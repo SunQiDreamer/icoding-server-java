@@ -8,8 +8,8 @@ import com.sq.ic.common.foreign.anno.ForeignField;
 import com.sq.ic.common.foreign.anno.ForeignField.ForeignFields;
 import com.sq.ic.common.foreign.info.ForeignFieldInfo;
 import com.sq.ic.common.foreign.info.ForeignTableInfo;
-import com.mj.jk.common.util.Classes;
-import com.mj.jk.common.util.JsonVos;
+import com.sq.ic.common.util.Classes;
+import com.sq.ic.common.util.JsonVos;
 import com.mj.jk.common.util.Strings;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -76,7 +76,7 @@ public class ForeignAspect implements InitializingBean {
             QueryWrapper<Class<?>> wrapper = new QueryWrapper<>();
             wrapper.in(subField.getColumn(), ids);
             if (mainField.getCascade() == ForeignCascade.DEFAULT) { // 默认
-                Integer count = mapper.selectCount(wrapper);
+                Integer count = Math.toIntExact(mapper.selectCount(wrapper));
                 if (count == 0) continue;
                 JsonVos.raise(String.format("有%d条【%s】数据相关联，无法删除！", count, subTable.getTable()));
             } else { // 删除关联数据

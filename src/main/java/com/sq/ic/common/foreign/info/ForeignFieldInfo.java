@@ -1,7 +1,6 @@
 package com.sq.ic.common.foreign.info;
 
 import com.sq.ic.common.foreign.anno.ForeignCascade;
-import com.mj.jk.pojo.po.DictType;
 import lombok.Getter;
 import lombok.Setter;
 
