@@ -87,6 +87,19 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.2.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.5.2.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
 <!--		后端校验-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
