@@ -1,4 +1,4 @@
-package com.mj.jk.common.enhance;
+package com.sq.ic.common.enhance;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;

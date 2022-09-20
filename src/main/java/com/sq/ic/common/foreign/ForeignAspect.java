@@ -10,7 +10,7 @@ import com.sq.ic.common.foreign.info.ForeignFieldInfo;
 import com.sq.ic.common.foreign.info.ForeignTableInfo;
 import com.sq.ic.common.util.Classes;
 import com.sq.ic.common.util.JsonVos;
-import com.mj.jk.common.util.Strings;
+import com.sq.ic.common.util.Strings;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -34,13 +34,13 @@ import java.util.List;
 @Aspect
 @Component
 public class ForeignAspect implements InitializingBean {
-    private static final String FOREIGN_SCAN = "classpath*:com/mj/jk/pojo/po/**/*.class";
+    private static final String FOREIGN_SCAN = "classpath*:com/sq/ic/pojo/po/**/*.class";
     @Autowired
     private ApplicationContext ctx;
     @Autowired
     private ResourceLoader resourceLoader;
 
-    @Around("execution(* com.mj.jk.service..*.remove*(..))")
+    @Around("execution(* com.sq.ic.service..*.remove*(..))")
     public Object handleRemove(ProceedingJoinPoint point) throws Throwable {
         Object target = point.getTarget();
         if (!(target instanceof IService)) return point.proceed();
@@ -86,7 +86,7 @@ public class ForeignAspect implements InitializingBean {
         return point.proceed();
     }
 
-    @Around("execution(* com.mj.jk.service..*.save*(..)) || execution(* com.mj.jk.service..*.update*(..)) ")
+    @Around("execution(* com.sq.ic.service..*.save*(..)) || execution(* com.sq.ic.service..*.update*(..)) ")
     public Object handleSaveOrUpdate(ProceedingJoinPoint point) throws Throwable {
         Object target = point.getTarget();
         if (!(target instanceof IService)) return point.proceed();

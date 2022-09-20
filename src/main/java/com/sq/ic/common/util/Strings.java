@@ -1,4 +1,4 @@
-package com.mj.jk.common.util;
+package com.sq.ic.common.util;
 
 public class Strings {
     private static final int DELTA = 'a' - 'A';

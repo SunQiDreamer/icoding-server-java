@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.JsonVo;
+import com.sq.ic.pojo.vo.req.save.StudentReqVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.Arrays;
 import java.util.function.Function;
@@ -31,7 +31,7 @@ public abstract class BaseController<Po, ReqVo> {
 
     @PostMapping("/save")
     @ApiOperation("添加或更新")
-    public JsonVo save(@Valid ReqVo reqVo) {
+    public JsonVo save(ReqVo reqVo) {
         Po po = getFunction().apply(reqVo);
         if (getService().saveOrUpdate(po)) {
             return JsonVos.ok(CodeMsg.SAVE_OK);

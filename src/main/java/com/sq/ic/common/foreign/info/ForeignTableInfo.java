@@ -3,7 +3,7 @@ package com.sq.ic.common.foreign.info;
 import com.sq.ic.common.foreign.anno.ForeignCascade;
 import com.sq.ic.common.foreign.anno.ForeignField;
 import com.sq.ic.common.foreign.anno.ForeignTable;
-import com.mj.jk.common.util.Strings;
+import com.sq.ic.common.util.Strings;
 import lombok.Getter;
 import lombok.Setter;
 

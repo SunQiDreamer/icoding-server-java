@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+// localhost:<port>/swagger-ui/index.html
 @Configuration
 public class SwaggerCfg implements InitializingBean {
 
@@ -93,7 +95,7 @@ public class SwaggerCfg implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
+        enable = environment.acceptsProfiles(Profiles.of("dev", "test"));
     }
 
 

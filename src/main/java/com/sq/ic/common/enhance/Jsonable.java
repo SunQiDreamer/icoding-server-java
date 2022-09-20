@@ -1,4 +1,4 @@
-package com.mj.jk.common.enhance;
+package com.sq.ic.common.enhance;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
