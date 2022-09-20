@@ -6,6 +6,8 @@ import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.pojo.po.Student;
 import com.sq.ic.pojo.po.list.StudentVo;
 import com.sq.ic.pojo.vo.JsonVo;
+import com.sq.ic.pojo.vo.PageJsonVo;
+import com.sq.ic.pojo.vo.req.page.StudentPageReqVo;
 import com.sq.ic.pojo.vo.req.save.StudentReqVo;
 import com.sq.ic.service.StudentService;
 import io.swagger.annotations.Api;
@@ -24,15 +26,18 @@ import java.util.function.Function;
 public class StudentController extends BaseController<Student, StudentReqVo> {
     @Autowired
     private StudentService service;
-    @GetMapping("/get")
-    @ApiOperation("get")
-    public JsonVo get() {
-        return JsonVos.ok("get11");
-    }
+
     @PostMapping("/save")
     @ApiOperation("保存")
     public JsonVo save(StudentReqVo student) {
         return super.save(student);
+    }
+
+    @GetMapping
+    @ApiOperation("分页查询")
+    public PageJsonVo list(StudentPageReqVo pageReqVo) {
+//        service.list(pageReqVo);
+
     }
 
 
