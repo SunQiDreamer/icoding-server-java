@@ -3,8 +3,10 @@ package com.sq.ic.controller;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.JsonVos;
+import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.po.Student;
 import com.sq.ic.pojo.po.list.StudentVo;
+import com.sq.ic.pojo.vo.DataJsonVo;
 import com.sq.ic.pojo.vo.JsonVo;
 import com.sq.ic.pojo.vo.PageJsonVo;
 import com.sq.ic.pojo.vo.req.page.StudentPageReqVo;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.function.Function;
 
 @RestController
@@ -34,12 +37,12 @@ public class StudentController extends BaseController<Student, StudentReqVo> {
     }
 
     @GetMapping
-    @ApiOperation("分页查询")
-    public PageJsonVo list(StudentPageReqVo pageReqVo) {
-//        service.list(pageReqVo);
-
+    @ApiOperation("查询所有")
+    public DataJsonVo<List<StudentVo>> list() {
+          List students = service.list();
+          List studentVos = Streams.map(students, MapStructs.INSTANCE::po2vo);
+          return new DataJsonVo<>(studentVos);
     }
-
 
     @Override
     protected IService<Student> getService() {

@@ -18,4 +18,6 @@ public interface MapStructs {
 
     Student reqVo2po(StudentReqVo vo);
 
+    StudentVo po2vo(Student po);
+
 }

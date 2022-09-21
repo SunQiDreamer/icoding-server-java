@@ -9,4 +9,10 @@ import lombok.EqualsAndHashCode;
 public class StudentPageReqVo extends KeywordPageReqVo {
     @ApiModelProperty("学生id")
     private Integer studentId;
+
+    @ApiModelProperty("学号")
+    private Integer no;
+
+    @ApiModelProperty("名字")
+    private String name;
 }
