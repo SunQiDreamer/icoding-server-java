@@ -80,13 +80,13 @@ public class SwaggerCfg implements InitializingBean {
     }
 
     private Docket basicDocket() {
-        RequestParameter token = new RequestParameterBuilder()
-                .name("token")
-                .description("用户登录令牌")
-                .in(ParameterType.HEADER)
-                .build();
+//        RequestParameter token = new RequestParameterBuilder()
+//                .name("token")
+//                .description("用户登录令牌")
+//                .in(ParameterType.HEADER)
+//                .build();
         return new Docket(DocumentationType.SWAGGER_2)
-                .globalRequestParameters(List.of(token))
+//                .globalRequestParameters(List.of(token))
                 .ignoredParameterTypes(HttpSession.class,
                         HttpServletRequest.class,
                         HttpServletResponse.class)
