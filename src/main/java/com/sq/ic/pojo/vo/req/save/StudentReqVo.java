@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class StudentReqVo {
-//    @ApiModelProperty("id")
-//    private Integer id;
+    @ApiModelProperty("id")
+    private Integer id;
 
     @NotBlank(message = "名称不能为空")
     @ApiModelProperty(value = "name", required = true)

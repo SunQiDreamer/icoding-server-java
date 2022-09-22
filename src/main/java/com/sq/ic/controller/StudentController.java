@@ -30,12 +30,6 @@ public class StudentController extends BaseController<Student, StudentReqVo> {
     @Autowired
     private StudentService service;
 
-//    @PostMapping("/save")
-//    @ApiOperation("保存")
-//    public JsonVo save(StudentReqVo student) {
-//        return super.save(student);
-//    }
-
     @GetMapping
     @ApiOperation("查询所有")
     public DataJsonVo<List<StudentVo>> list() {

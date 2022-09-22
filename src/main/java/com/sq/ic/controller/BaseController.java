@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.JsonVo;
-import com.sq.ic.pojo.vo.req.save.StudentReqVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
