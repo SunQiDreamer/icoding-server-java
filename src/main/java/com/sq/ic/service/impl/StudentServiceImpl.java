@@ -6,7 +6,7 @@ import com.sq.ic.common.enhance.MpPage;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.mapper.StudentMapper;
 import com.sq.ic.pojo.po.Student;
-import com.sq.ic.pojo.po.list.StudentVo;
+import com.sq.ic.pojo.list.StudentVo;
 import com.sq.ic.pojo.vo.PageVo;
 import com.sq.ic.pojo.vo.req.page.StudentPageReqVo;
 import com.sq.ic.service.StudentService;

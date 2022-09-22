@@ -6,6 +6,7 @@ import com.sq.ic.common.foreign.anno.ForeignField;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class Student {
@@ -18,6 +19,9 @@ public class Student {
 
 //    性别： 0 male, 1 female
     private Short sex;
+
+    // 爱好
+    private List<Short> hobbyIds;
 
     @ForeignField(Grade.class)
     private Integer gradeId;

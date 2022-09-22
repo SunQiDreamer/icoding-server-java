@@ -1,4 +1,4 @@
-package com.sq.ic.pojo.po.list;
+package com.sq.ic.pojo.list;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

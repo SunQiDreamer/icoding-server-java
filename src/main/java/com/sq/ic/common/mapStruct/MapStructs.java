@@ -2,8 +2,8 @@ package com.sq.ic.common.mapStruct;
 
 import com.sq.ic.pojo.po.Grade;
 import com.sq.ic.pojo.po.Student;
-import com.sq.ic.pojo.po.list.GradeVo;
-import com.sq.ic.pojo.po.list.StudentVo;
+import com.sq.ic.pojo.list.GradeVo;
+import com.sq.ic.pojo.list.StudentVo;
 import com.sq.ic.pojo.vo.req.save.GradeReqVo;
 import com.sq.ic.pojo.vo.req.save.StudentReqVo;
 import org.mapstruct.Mapper;
