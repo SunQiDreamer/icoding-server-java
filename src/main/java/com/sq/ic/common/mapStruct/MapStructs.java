@@ -4,8 +4,10 @@ import com.sq.ic.pojo.po.Grade;
 import com.sq.ic.pojo.po.Student;
 import com.sq.ic.pojo.list.GradeVo;
 import com.sq.ic.pojo.list.StudentVo;
+import com.sq.ic.pojo.po.Teacher;
 import com.sq.ic.pojo.vo.req.save.GradeReqVo;
 import com.sq.ic.pojo.vo.req.save.StudentReqVo;
+import com.sq.ic.pojo.vo.req.save.TeacherReqVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -26,4 +28,6 @@ public interface MapStructs {
     Grade reqVo2po(GradeReqVo gradeReqVo);
 
     GradeVo po2vo(Grade po);
+
+    Teacher reqVo2po(TeacherReqVo teacherReqVo);
 }
