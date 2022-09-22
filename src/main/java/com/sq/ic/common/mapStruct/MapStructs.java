@@ -1,5 +1,6 @@
 package com.sq.ic.common.mapStruct;
 
+import com.sq.ic.pojo.list.TeacherVo;
 import com.sq.ic.pojo.po.Grade;
 import com.sq.ic.pojo.po.Student;
 import com.sq.ic.pojo.list.GradeVo;
@@ -30,4 +31,6 @@ public interface MapStructs {
     GradeVo po2vo(Grade po);
 
     Teacher reqVo2po(TeacherReqVo teacherReqVo);
+
+    TeacherVo po2vo(Teacher teacher);
 }
