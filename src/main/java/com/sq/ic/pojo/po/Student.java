@@ -16,6 +16,9 @@ public class Student {
 
     private Integer no;
 
+//    性别： 0 male, 1 female
+    private Short sex;
+
     @ForeignField(Grade.class)
     private Integer gradeId;
 

@@ -16,23 +16,23 @@ public class WebCfg implements WebMvcConfigurer {
     @Autowired
     private ICProperties properties;
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        // /**表示对所有的路径开放全局跨域访问权限
-        registry.addMapping("/**")
-                // 开放哪些IP、端口、域名的访问权限
-                .allowedOrigins(properties.getCfg().getCorsOrigins())
-                // 是否允许发送Cookie信息
-                .allowCredentials(true)
-                // 哪些HTTP方法允许跨域访问
-                .allowedMethods("GET", "POST");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        // /**表示对所有的路径开放全局跨域访问权限
+//        registry.addMapping("/**")
+//                // 开放哪些IP、端口、域名的访问权限
+//                .allowedOrigins(properties.getCfg().getCorsOrigins())
+//                // 是否允许发送Cookie信息
+//                .allowCredentials(true)
+//                // 哪些HTTP方法允许跨域访问
+//                .allowedMethods("GET", "POST");
+//    }
 
-    FilterRegistrationBean<Filter> filterFilterRegistrationBean() {
-        FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
-        bean.setFilter(new ErrorFilter());
-        bean.addUrlPatterns("/*");
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        return bean;
-    }
+//    FilterRegistrationBean<Filter> filterFilterRegistrationBean() {
+//        FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
+//        bean.setFilter(new ErrorFilter());
+//        bean.addUrlPatterns("/*");
+//        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        return bean;
+//    }
 }

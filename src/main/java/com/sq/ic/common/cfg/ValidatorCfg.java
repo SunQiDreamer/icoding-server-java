@@ -16,7 +16,8 @@ public class ValidatorCfg {
                 .byProvider(HibernateValidator.class)
                 .configure()
                 .failFast(true)
-                .buildValidatorFactory().getValidator();
+                .buildValidatorFactory()
+                .getValidator();
     }
 
 }

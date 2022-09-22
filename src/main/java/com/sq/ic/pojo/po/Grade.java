@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class Grade {
@@ -12,6 +13,8 @@ public class Grade {
     private Integer id;
 
     private String name;
+
+    private List<Student> students;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
