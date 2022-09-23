@@ -1,61 +1,72 @@
-create table Vaporschool._fluent_migrations
+create table Course
 (
-    id         varbinary(16) not null
+    id          smallint auto_increment
         primary key,
-    name       varchar(255)  not null,
-    batch      bigint        not null,
-    created_at datetime(6)   null,
-    updated_at datetime(6)   null,
-    constraint eb3ee69e0c062ede0b815d412472c764ccb82e41
+    name        varchar(30)                         not null,
+    create_time timestamp default CURRENT_TIMESTAMP not null,
+    update_time timestamp default CURRENT_TIMESTAMP not null,
+    constraint Course_id_uindex
+        unique (id),
+    constraint Course_name_uindex
         unique (name)
 )
-    charset = utf8mb4;
+    auto_increment = 5;
 
-create table Vaporschool.grades
+create table Grade
 (
-    id         smallint     not null
+    id          smallint auto_increment
         primary key,
-    name       varchar(255) not null,
-    created_at datetime(6)  null,
-    updated_at datetime(6)  null,
-    constraint f5bced18dd859064783f8c180847e5f633ceb1c5
+    name        varchar(30) default ''                not null,
+    create_time timestamp   default CURRENT_TIMESTAMP not null,
+    update_time timestamp   default CURRENT_TIMESTAMP not null,
+    constraint Grade_id_uindex
+        unique (id),
+    constraint Grade_name_uindex
         unique (name)
-);
-
-create table Vaporschool.hobbies
-(
-    id         smallint     not null
-        primary key,
-    name       varchar(255) not null,
-    created_at datetime(6)  null,
-    updated_at datetime(6)  null,
-    constraint `9f44df3041aabbbc80840bb3e9f0d9314333dc44`
-        unique (name)
-);
-
-create table Vaporschool.`student+tag`
-(
-    id         varbinary(16) not null
-        primary key,
-    student_id varbinary(16) null,
-    hobby_id   varbinary(16) null,
-    created_at varchar(255)  null,
-    updated_at varchar(255)  null,
-    constraint a99066b815fb0ca08c6e91e378edcbc5a5590f9d
-        unique (student_id, hobby_id)
 )
-    charset = utf8mb4;
+    auto_increment = 4;
 
-create table Vaporschool.students
+create table Hobby
 (
-    id         smallint      not null
+    id          smallint auto_increment
         primary key,
-    name       varchar(255)  not null,
-    no         bigint        not null,
-    grade_id   varbinary(16) not null,
-    created_at datetime(6)   null,
-    updated_at datetime(6)   null,
-    constraint `13ff81310b2d2a468250f340ea60337af157e02a`
+    name        varchar(30)                         not null,
+    create_time timestamp default CURRENT_TIMESTAMP not null,
+    update_time timestamp default CURRENT_TIMESTAMP not null,
+    constraint Hobby_id_uindex
+        unique (id)
+);
+
+create table Student
+(
+    id          smallint auto_increment
+        primary key,
+    name        varchar(30) default '' not null,
+    no          smallint    default 0  not null,
+    create_time timestamp              null,
+    update_time timestamp              null,
+    grade_id    smallint               null,
+    sex         tinyint     default 0  null,
+    constraint Student_id_uindex
+        unique (id),
+    constraint Student_no_uindex
         unique (no)
+)
+    auto_increment = 10;
+
+create table Teacher
+(
+    id          smallint auto_increment
+        primary key,
+    name        varchar(30)                         not null,
+    sex         tinyint                             not null,
+    grade_ids   varchar(100)                        null,
+    course_id   tinyint                             not null,
+    is_main     tinyint(1)                          null,
+    hobby_ids   varchar(100)                        null,
+    create_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    update_time timestamp default CURRENT_TIMESTAMP not null,
+    constraint Teacher_id_uindex
+        unique (id)
 );
 
