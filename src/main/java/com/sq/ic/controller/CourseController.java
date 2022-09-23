@@ -29,8 +29,7 @@ public class CourseController extends BaseController<Course, CourseReqVo> {
     @GetMapping
     @ApiOperation("查询所有")
     public DataJsonVo<List<CourseVo>> list() {
-        List<Course> courses = service.list();
-        List<CourseVo> courseVos = Streams.map(courses, MapStructs.INSTANCE::po2vo);
+        List<CourseVo> courseVos = Streams.map(service.list(), MapStructs.INSTANCE::po2vo);
         return JsonVos.ok(courseVos);
     }
 
