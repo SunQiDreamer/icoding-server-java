@@ -66,6 +66,24 @@ public class SwaggerCfg implements InitializingBean {
                 "爱好系统");
     }
 
+    @Bean
+    public Docket courseDocket() {
+        return groupDocket(
+                "04_课程",
+                "/course.*",
+                "课程模块文档",
+                "课程系统");
+    }
+
+    @Bean
+    public Docket teacherDocket() {
+        return groupDocket(
+                "05_教师",
+                "/teacher.*",
+                "教师模块文档",
+                "教师系统");
+    }
+
     private Docket groupDocket(String group,
                                String regex,
                                String title,

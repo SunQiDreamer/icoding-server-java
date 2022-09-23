@@ -27,7 +27,7 @@ public class Teacher {
     private Boolean isMain;
 
     // 爱好
-    private List<Short> hobbyIds;
+    private String hobbyIds;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

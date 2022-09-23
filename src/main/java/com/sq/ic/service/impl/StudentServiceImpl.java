@@ -34,7 +34,7 @@ public class StudentServiceImpl
 
         // 查询
         return baseMapper
-                .selectPage(new MpPage<>(query), wrapper)
+                .selectPage(new MpPage<Student>(query), wrapper)
                 .buildVo(MapStructs.INSTANCE::po2vo);
     }
 }
