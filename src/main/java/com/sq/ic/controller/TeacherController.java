@@ -29,8 +29,7 @@ public class TeacherController extends BaseController<Teacher, TeacherReqVo> {
     @GetMapping
     @ApiOperation("查询所有")
     public DataJsonVo<List<TeacherVo>> list() {
-        List<Teacher> teachers = service.list();
-        List<TeacherVo> teacherVos = Streams.map(teachers, MapStructs.INSTANCE::po2vo);
+        List<TeacherVo> teacherVos = service.teachers();
         return JsonVos.ok(teacherVos);
     }
 

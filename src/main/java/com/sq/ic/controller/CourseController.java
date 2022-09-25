@@ -6,7 +6,6 @@ import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.list.CourseVo;
 import com.sq.ic.pojo.po.Course;
-import com.sq.ic.pojo.po.Hobby;
 import com.sq.ic.pojo.vo.DataJsonVo;
 import com.sq.ic.pojo.vo.req.save.CourseReqVo;
 import com.sq.ic.service.CourseService;

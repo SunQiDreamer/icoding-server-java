@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface TeacherService extends IService<Teacher> {
     PageVo<TeacherVo> list(TeacherPageReqVo reqVo);
+
+    List<TeacherVo> teachers();
 }

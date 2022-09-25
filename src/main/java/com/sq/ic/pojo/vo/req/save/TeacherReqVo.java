@@ -14,5 +14,5 @@ public class TeacherReqVo {
 
     private Boolean isMain;
 
-    private List<Short> hobbyIds;
+    private String hobbyIds;
 }

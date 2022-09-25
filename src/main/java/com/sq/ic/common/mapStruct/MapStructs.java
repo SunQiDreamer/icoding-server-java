@@ -1,17 +1,8 @@
 package com.sq.ic.common.mapStruct;
 
-import com.sq.ic.pojo.list.CourseVo;
-import com.sq.ic.pojo.list.TeacherVo;
-import com.sq.ic.pojo.po.Course;
-import com.sq.ic.pojo.po.Grade;
-import com.sq.ic.pojo.po.Student;
-import com.sq.ic.pojo.list.GradeVo;
-import com.sq.ic.pojo.list.StudentVo;
-import com.sq.ic.pojo.po.Teacher;
-import com.sq.ic.pojo.vo.req.save.CourseReqVo;
-import com.sq.ic.pojo.vo.req.save.GradeReqVo;
-import com.sq.ic.pojo.vo.req.save.StudentReqVo;
-import com.sq.ic.pojo.vo.req.save.TeacherReqVo;
+import com.sq.ic.pojo.list.*;
+import com.sq.ic.pojo.po.*;
+import com.sq.ic.pojo.vo.req.save.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -40,4 +31,8 @@ public interface MapStructs {
     Course reqVo2po(CourseReqVo courseReqVo);
 
     CourseVo po2vo(Course course);
+
+    HobbyVo po2vo(Hobby hobby);
+
+    Hobby reqVo2po(HobbyReqVo hobbyReqVo);
 }

@@ -22,7 +22,6 @@ import java.util.function.Function;
 
 @RestController
 @RequestMapping("/students")
-@Api(tags = "学生")
 public class StudentController extends BaseController<Student, StudentReqVo> {
     @Autowired
     private StudentService service;
