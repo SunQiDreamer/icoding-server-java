@@ -8,15 +8,18 @@ import com.sq.ic.common.util.Streams;
 import com.sq.ic.mapper.TeacherMapper;
 import com.sq.ic.pojo.list.TeacherVo;
 import com.sq.ic.pojo.po.Grade;
+import com.sq.ic.pojo.po.Hobby;
 import com.sq.ic.pojo.po.Teacher;
 import com.sq.ic.pojo.vo.PageVo;
 import com.sq.ic.pojo.vo.req.page.TeacherPageReqVo;
 import com.sq.ic.service.GradeService;
+import com.sq.ic.service.HobbyService;
 import com.sq.ic.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +31,9 @@ public class TeacherServiceImpl
 
     @Autowired
     private GradeService gradeService;
+
+    @Autowired
+    private HobbyService hobbyService;
 
     @Override
     @Transactional(readOnly = true)
@@ -53,8 +59,15 @@ public class TeacherServiceImpl
     @Override
     public List<TeacherVo> teachers() {
         List<Teacher> teachers = list();
+        List<TeacherVo> teacherVos = new ArrayList<>();
         for (Teacher teacher : teachers) {
-            
+            String [] hobbyIds = teacher.getHobbyIds().split(",");
+            List<Hobby> hobbies = hobbyService.list(List.of(hobbyIds));
+
+            TeacherVo teacherVo = MapStructs.INSTANCE.po2vo(teacher);
+            teacherVo.setHobbies(hobbies);
+            teacherVos.add(teacherVo);
         }
+        return teacherVos;
     }
 }

@@ -32,7 +32,7 @@ public interface MapStructs {
 
     CourseVo po2vo(Course course);
 
-    HobbyVo po2vo(Hobby hobby);
-
     Hobby reqVo2po(HobbyReqVo hobbyReqVo);
+
+    HobbyVo po2vo(Hobby hobby);
 }

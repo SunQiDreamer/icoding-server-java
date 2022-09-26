@@ -8,11 +8,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service
-@Component
+
 public class HobbyServiceImpl
         extends ServiceImpl<HobbyMapper, Hobby>
         implements HobbyService {
 
+    @Override
+    public List<Hobby> list(List<String> hobbyIds) {
+        List<Hobby> hobbies = baseMapper.selectBatchIds(hobbyIds);
+        return hobbies;
+    }
 }
