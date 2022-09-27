@@ -12,4 +12,7 @@ public class StudentPageReqVo extends PageReqVo {
 
     @ApiModelProperty("性别")
     private Short sex;
+
+    @ApiModelProperty("班级id")
+    private Short gradeId;
 }

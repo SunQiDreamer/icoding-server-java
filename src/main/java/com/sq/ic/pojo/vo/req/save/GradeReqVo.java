@@ -8,8 +8,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class GradeReqVo {
 
-    @NotBlank(message = "能不能为空")
+    @NotBlank(message = "不能为空")
     @ApiModelProperty(value = "班级名字", required = true)
-    private String name;
+    private Short id;
+
+    @ApiModelProperty(value = "班主任id", required = true)
+    private Short mainTeacherId;
 
 }

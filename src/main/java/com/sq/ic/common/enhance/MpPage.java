@@ -17,7 +17,7 @@ public class MpPage<T> extends Page<T> {
         this.reqVo = reqVo;
     }
 
-    private <N> PageVo<N> commonBuldVo(List<N> data) {
+    public  <N> PageVo<N> commonBuldVo(List<N> data) {
         reqVo.setPage(getCurrent());
         reqVo.setSize(getSize());
 

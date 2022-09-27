@@ -21,10 +21,10 @@ public class Student {
     private Short sex;
 
     // 爱好
-    private List<Short> hobbyIds;
+    private String hobbyIds;
 
     @ForeignField(Grade.class)
-    private Integer gradeId;
+    private Short gradeId;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

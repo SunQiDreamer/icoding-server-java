@@ -29,5 +29,6 @@ public class TeacherVo {
     private Boolean isMain;
 
     @ApiModelProperty("爱好")
-    private List<Hobby> hobbies;
+    private List<HobbyVo> hobbies;
+
 }

@@ -14,6 +14,7 @@ public class Teacher {
 
     private String name;
 
+    //    性别： 0 male, 1 female
     private Short sex;
 
     // 教的班级

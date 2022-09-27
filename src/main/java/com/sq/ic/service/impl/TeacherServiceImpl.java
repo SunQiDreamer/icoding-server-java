@@ -6,6 +6,7 @@ import com.sq.ic.common.enhance.MpPage;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.Streams;
 import com.sq.ic.mapper.TeacherMapper;
+import com.sq.ic.pojo.list.HobbyVo;
 import com.sq.ic.pojo.list.TeacherVo;
 import com.sq.ic.pojo.po.Grade;
 import com.sq.ic.pojo.po.Hobby;
@@ -62,10 +63,10 @@ public class TeacherServiceImpl
         List<TeacherVo> teacherVos = new ArrayList<>();
         for (Teacher teacher : teachers) {
             String [] hobbyIds = teacher.getHobbyIds().split(",");
-            List<Hobby> hobbies = hobbyService.list(List.of(hobbyIds));
+            List<HobbyVo> hobbyVos = Streams.map(hobbyService.list(List.of(hobbyIds)), MapStructs.INSTANCE::po2vo);
 
             TeacherVo teacherVo = MapStructs.INSTANCE.po2vo(teacher);
-            teacherVo.setHobbies(hobbies);
+            teacherVo.setHobbies(hobbyVos);
             teacherVos.add(teacherVo);
         }
         return teacherVos;

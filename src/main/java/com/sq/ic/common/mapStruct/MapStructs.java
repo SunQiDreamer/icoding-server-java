@@ -15,15 +15,9 @@ import org.mapstruct.factory.Mappers;
 })
 public interface MapStructs {
     MapStructs INSTANCE = Mappers.getMapper(MapStructs.class);
-
-    Student reqVo2po(StudentReqVo vo);
-
-    StudentVo po2vo(Student po);
-
+    
     Grade reqVo2po(GradeReqVo gradeReqVo);
-
-    GradeVo po2vo(Grade po);
-
+    
     Teacher reqVo2po(TeacherReqVo teacherReqVo);
 
     TeacherVo po2vo(Teacher teacher);
@@ -35,4 +29,10 @@ public interface MapStructs {
     Hobby reqVo2po(HobbyReqVo hobbyReqVo);
 
     HobbyVo po2vo(Hobby hobby);
+
+    GradeVo po2vo(Grade grade);
+
+    StudentVo po2vo(Student student);
+
+    Student reqVo2po(StudentReqVo vo);
 }
