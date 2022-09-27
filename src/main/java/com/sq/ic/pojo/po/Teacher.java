@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class Teacher {
-    private int id;
+    private Integer id;
 
     private String name;
 
@@ -18,7 +18,7 @@ public class Teacher {
     private Short sex;
 
     // 教的班级
-    private List<Short> gradeIds;
+    private String gradeIds;
 
     // 主教的课程
     @ForeignField(Course.class)

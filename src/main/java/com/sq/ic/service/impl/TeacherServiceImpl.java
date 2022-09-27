@@ -8,8 +8,6 @@ import com.sq.ic.common.util.Streams;
 import com.sq.ic.mapper.TeacherMapper;
 import com.sq.ic.pojo.list.HobbyVo;
 import com.sq.ic.pojo.list.TeacherVo;
-import com.sq.ic.pojo.po.Grade;
-import com.sq.ic.pojo.po.Hobby;
 import com.sq.ic.pojo.po.Teacher;
 import com.sq.ic.pojo.vo.PageVo;
 import com.sq.ic.pojo.vo.req.page.TeacherPageReqVo;
