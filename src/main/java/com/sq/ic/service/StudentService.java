@@ -8,4 +8,6 @@ import com.sq.ic.pojo.vo.req.page.StudentPageReqVo;
 
 public interface StudentService extends IService<Student> {
     PageVo<StudentVo> list(StudentPageReqVo pageReqVo);
+
+    StudentVo student(Integer id);
 }

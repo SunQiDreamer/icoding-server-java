@@ -60,4 +60,18 @@ public class StudentServiceImpl
         }
         return page.commonBuldVo(studentVos);
     }
+
+    @Override
+    public StudentVo student(Integer id) {
+        Student student = baseMapper.selectById(id);
+        StudentVo studentVo = MapStructs.INSTANCE.po2vo(student);
+
+        String hobbyIdStr = student.getHobbyIds();
+        if (hobbyIdStr != null) {
+            List<String> hobbyIds = List.of(hobbyIdStr.split(","));
+            List<Hobby> hobbies = hobbyService.listByIds(hobbyIds);
+            studentVo.setHobbies(hobbies);
+        }
+        return studentVo;
+    }
 }
