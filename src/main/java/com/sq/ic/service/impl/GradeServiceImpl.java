@@ -20,7 +20,9 @@ import java.util.List;
 
 @Service
 @Transactional
-public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements GradeService {
+public class GradeServiceImpl
+        extends ServiceImpl<GradeMapper, Grade>
+        implements GradeService {
 
     @Override
     public JsonVo addMainTeacher(GradeReqVo reqVo) {

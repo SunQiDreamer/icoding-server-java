@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sq.ic.common.enhance.MpLambdaQueryWrapper;
 import com.sq.ic.common.enhance.MpPage;
 import com.sq.ic.common.mapStruct.MapStructs;
+import com.sq.ic.common.util.Streams;
 import com.sq.ic.mapper.StudentMapper;
+import com.sq.ic.pojo.list.HobbyVo;
 import com.sq.ic.pojo.po.Hobby;
 import com.sq.ic.pojo.po.Student;
 import com.sq.ic.pojo.list.StudentVo;
@@ -47,30 +49,25 @@ public class StudentServiceImpl
 
         MpPage<Student> page = baseMapper.selectPage(new MpPage<Student>(query), wrapper);
         List<StudentVo> studentVos = new ArrayList<>();
-        for (Student student : page.getRecords()) {
-            StudentVo studentVo = MapStructs.INSTANCE.po2vo(student);
-
-            String hobbyIdStr = student.getHobbyIds();
-            if (hobbyIdStr != null) {
-                List<String> hobbyIds = List.of(hobbyIdStr.split(","));
-                List<Hobby> hobbies = hobbyService.listByIds(hobbyIds);
-                studentVo.setHobbies(hobbies);
-            }
-            studentVos.add(studentVo);
-        }
+        page.getRecords().forEach(student -> studentVos.add(getStudentVo(student)));
         return page.commonBuldVo(studentVos);
     }
 
     @Override
     public StudentVo student(Integer id) {
         Student student = baseMapper.selectById(id);
+        return getStudentVo(student);
+    }
+
+    private StudentVo getStudentVo(Student student) {
         StudentVo studentVo = MapStructs.INSTANCE.po2vo(student);
 
         String hobbyIdStr = student.getHobbyIds();
         if (hobbyIdStr != null) {
             List<String> hobbyIds = List.of(hobbyIdStr.split(","));
             List<Hobby> hobbies = hobbyService.listByIds(hobbyIds);
-            studentVo.setHobbies(hobbies);
+            List<HobbyVo> hobbyVos = Streams.map(hobbies, MapStructs.INSTANCE::po2vo);
+            studentVo.setHobbyVos(hobbyVos);
         }
         return studentVo;
     }

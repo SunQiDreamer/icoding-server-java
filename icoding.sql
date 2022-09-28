@@ -1,92 +1,125 @@
-CREATE TABLE `Course` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) COLLATE utf8mb4_0900_as_ci NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Course_id_uindex` (`id`),
-  UNIQUE KEY `Course_name_uindex` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.Course
+(
+    id          smallint auto_increment
+        primary key,
+    name        varchar(30)                         not null,
+    create_time timestamp default CURRENT_TIMESTAMP not null,
+    update_time timestamp default CURRENT_TIMESTAMP not null,
+    constraint Course_id_uindex
+        unique (id),
+    constraint Course_name_uindex
+        unique (name)
+)
+    auto_increment = 5;
 
-CREATE TABLE `Grade` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) COLLATE utf8mb4_0900_as_ci NOT NULL DEFAULT '',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `mainTeacherId` smallint DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Grade_id_uindex` (`id`),
-  UNIQUE KEY `Grade_name_uindex` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.Grade
+(
+    id            smallint auto_increment
+        primary key,
+    name          varchar(30) default ''                not null,
+    create_time   timestamp   default CURRENT_TIMESTAMP not null,
+    update_time   timestamp   default CURRENT_TIMESTAMP not null,
+    mainTeacherId smallint                              null,
+    constraint Grade_id_uindex
+        unique (id),
+    constraint Grade_name_uindex
+        unique (name)
+)
+    auto_increment = 4;
 
-CREATE TABLE `Hobby` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) COLLATE utf8mb4_0900_as_ci NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Hobby_name_uindex` (`name`),
-  UNIQUE KEY `Hobby_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.Hobby
+(
+    id          smallint auto_increment
+        primary key,
+    name        varchar(30)                         not null,
+    create_time timestamp default CURRENT_TIMESTAMP not null,
+    update_time timestamp default CURRENT_TIMESTAMP not null,
+    constraint Hobby_id_uindex
+        unique (id)
+)
+    auto_increment = 6;
 
-CREATE TABLE `Student` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) COLLATE utf8mb4_0900_as_ci NOT NULL DEFAULT '',
-  `no` smallint NOT NULL DEFAULT '0',
-  `create_time` timestamp NULL DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT NULL,
-  `grade_id` smallint DEFAULT NULL,
-  `sex` tinyint DEFAULT '0',
-  `hobby_ids` varchar(30) COLLATE utf8mb4_0900_as_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Student_id_uindex` (`id`),
-  UNIQUE KEY `Student_no_uindex` (`no`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.Student
+(
+    id          smallint auto_increment
+        primary key,
+    name        varchar(30) default '' not null,
+    no          smallint    default 0  not null,
+    create_time timestamp              null,
+    update_time timestamp              null,
+    grade_id    smallint               null,
+    sex         tinyint     default 0  null,
+    hobby_ids   varchar(30)            null,
+    constraint Student_id_uindex
+        unique (id),
+    constraint Student_no_uindex
+        unique (no)
+)
+    auto_increment = 10;
 
-CREATE TABLE `Teacher` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) COLLATE utf8mb4_0900_as_ci NOT NULL,
-  `sex` tinyint NOT NULL,
-  `grade_ids` varchar(100) COLLATE utf8mb4_0900_as_ci DEFAULT NULL,
-  `course_id` tinyint NOT NULL,
-  `is_main` tinyint(1) DEFAULT NULL,
-  `hobby_ids` varchar(100) COLLATE utf8mb4_0900_as_ci DEFAULT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Teacher_id_uindex` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.Teacher
+(
+    id          smallint auto_increment
+        primary key,
+    name        varchar(30)                         not null,
+    sex         tinyint                             not null,
+    grade_ids   varchar(100)                        null,
+    course_id   tinyint                             not null,
+    is_main     tinyint(1)                          null,
+    hobby_ids   varchar(100)                        null,
+    create_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    update_time timestamp default CURRENT_TIMESTAMP not null,
+    constraint Teacher_id_uindex
+        unique (id)
+)
+    auto_increment = 4;
 
-CREATE TABLE `_fluent_migrations` (
-  `id` varbinary(16) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `batch` bigint NOT NULL,
-  `created_at` datetime(6) DEFAULT NULL,
-  `updated_at` datetime(6) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `eb3ee69e0c062ede0b815d412472c764ccb82e41` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+create table Vaporschool.sys_resource
+(
+    id         smallint auto_increment
+        primary key,
+    name       varchar(20) not null,
+    uri        varchar(50) not null,
+    permission varchar(20) null,
+    type       smallint    null,
+    icon       varchar(50) null,
+    sn         smallint    null,
+    parent_id  smallint    null
+);
 
-CREATE TABLE `sys_resource` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) COLLATE utf8mb4_0900_as_ci NOT NULL,
-  `uri` varchar(50) COLLATE utf8mb4_0900_as_ci NOT NULL,
-  `permission` varchar(20) COLLATE utf8mb4_0900_as_ci DEFAULT NULL,
-  `type` smallint DEFAULT NULL,
-  `icon` varchar(50) COLLATE utf8mb4_0900_as_ci DEFAULT NULL,
-  `sn` smallint DEFAULT NULL,
-  `parent_id` smallint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.sys_role
+(
+    id   smallint    not null
+        primary key,
+    name varchar(20) not null
+);
 
-CREATE TABLE `sys_user_role` (
-  `role_id` smallint NOT NULL,
-  `user_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.sys_role_resource
+(
+    role_id     smallint not null,
+    resource_id smallint not null,
+    constraint sys_role_resource_pk
+        unique (role_id, resource_id)
+);
 
-CREATE TABLE `table_name` (
-  `id` smallint NOT NULL,
-  `name` varchar(20) COLLATE utf8mb4_0900_as_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_ci
+create table Vaporschool.sys_user
+(
+    id          int auto_increment
+        primary key,
+    nick_name   varchar(20)                         null,
+    user_name   varchar(20)                         not null,
+    password    varchar(20)                         not null,
+    create_time timestamp default CURRENT_TIMESTAMP null,
+    login_time  timestamp                           null,
+    status      tinyint   default 0                 not null,
+    constraint sys_user_id_uindex
+        unique (id)
+);
+
+create table Vaporschool.sys_user_role
+(
+    role_id smallint not null,
+    user_id int      not null
+);
+
 

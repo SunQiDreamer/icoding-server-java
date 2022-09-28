@@ -26,5 +26,5 @@ public class StudentVo {
     private Short sex;
 
     @ApiModelProperty("爱好")
-    private List<Hobby> hobbies;
+    private List<HobbyVo> hobbyVos;
 }
