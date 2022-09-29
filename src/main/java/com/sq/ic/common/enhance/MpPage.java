@@ -33,8 +33,8 @@ public class MpPage<T> extends Page<T> {
     }
 
     public <R> PageVo<R> buildVo(Function<T, R> function) {
-        List records = getRecords();
-        List data = Streams.map(records, function);
-        return commonBuldVo(data);
+        List records = getRecords(); // po
+        List data = Streams.map(records, function); // to vo
+        return commonBuldVo(data); // to PageVo
     }
 }

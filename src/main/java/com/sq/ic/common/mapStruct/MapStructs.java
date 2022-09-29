@@ -45,4 +45,8 @@ public interface MapStructs {
     SysUser reqVo2po(SysUserReqVo sysUserReqVo);
 
     LoginVo po2loginVo(SysUser user);
+
+    SysRole reqVo2po(SysRoleReqVo sysRoleReqVo);
+
+    SysRoleVo po2vo(SysRole sysRole);
 }
