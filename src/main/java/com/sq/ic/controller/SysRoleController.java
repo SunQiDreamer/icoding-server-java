@@ -7,6 +7,7 @@ import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.list.SysRoleVo;
 import com.sq.ic.pojo.po.SysRole;
 import com.sq.ic.pojo.vo.DataJsonVo;
+import com.sq.ic.pojo.vo.PageJsonVo;
 import com.sq.ic.pojo.vo.req.page.SysRolePageReqVo;
 import com.sq.ic.pojo.vo.req.save.SysRoleReqVo;
 import com.sq.ic.service.SysRoleService;
@@ -44,10 +45,8 @@ public class SysRoleController extends BaseController<SysRole, SysRoleReqVo> {
 
     @GetMapping()
     @ApiOperation("分页查询")
-    public DataJsonVo<List<SysRoleVo>> list(SysRolePageReqVo pageReqVo) {
-        List<SysRole> roles = service.list(pageReqVo);
-        List<SysRoleVo> roleVos = Streams.map(roles, MapStructs.INSTANCE::po2vo);
-        return JsonVos.ok(roleVos);
+    public PageJsonVo<SysRoleVo> list(SysRolePageReqVo pageReqVo) {
+        return JsonVos.ok(service.list(pageReqVo));
     }
 
     @Override

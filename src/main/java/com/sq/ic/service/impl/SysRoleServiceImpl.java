@@ -21,6 +21,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.List;
 
 @Service
+@Transactional
 public class SysRoleServiceImpl
         extends ServiceImpl<SysRoleMapper, SysRole>
         implements SysRoleService {

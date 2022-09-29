@@ -3,8 +3,7 @@ package com.sq.ic.common.enhance;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.vo.PageVo;
-import com.sq.ic.pojo.vo.req.page.PageReqVo;
-import com.sq.ic.pojo.vo.req.page.TeacherPageReqVo;
+import com.sq.ic.pojo.vo.req.save.PageReqVo;
 
 import java.util.List;
 import java.util.function.Function;

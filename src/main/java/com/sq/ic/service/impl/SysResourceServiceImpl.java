@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 public class SysResourceServiceImpl
         extends ServiceImpl<SysResourceMapper, SysResource>
         implements SysResourceService {

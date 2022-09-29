@@ -12,7 +12,6 @@ import java.util.List;
 
 @Transactional
 @Service
-
 public class HobbyServiceImpl
         extends ServiceImpl<HobbyMapper, Hobby>
         implements HobbyService {

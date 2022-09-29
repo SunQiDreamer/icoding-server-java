@@ -49,4 +49,5 @@ public interface MapStructs {
     SysRole reqVo2po(SysRoleReqVo sysRoleReqVo);
 
     SysRoleVo po2vo(SysRole sysRole);
+
 }

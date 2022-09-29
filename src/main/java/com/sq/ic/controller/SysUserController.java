@@ -5,11 +5,13 @@ import com.sq.ic.common.cache.Caches;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.shiro.TokenFilter;
 import com.sq.ic.common.util.JsonVos;
+import com.sq.ic.pojo.list.SysUserVo;
 import com.sq.ic.pojo.po.SysUser;
 import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.DataJsonVo;
 import com.sq.ic.pojo.vo.JsonVo;
 import com.sq.ic.pojo.vo.LoginVo;
+import com.sq.ic.pojo.vo.PageJsonVo;
 import com.sq.ic.pojo.vo.req.LoginReqVo;
 import com.sq.ic.pojo.vo.req.page.SysUserReqVo;
 import com.sq.ic.service.SysUserService;
@@ -53,6 +55,10 @@ public class SysUserController extends BaseController<SysUser, SysUserReqVo> {
         Caches.removeToken(token);
         return JsonVos.ok();
     }
+
+//    @GetMapping
+//    @ApiOperation("分页查询")
+//    public PageJsonVo<SysUserVo>
 
     @Override
     protected IService<SysUser> getService() {

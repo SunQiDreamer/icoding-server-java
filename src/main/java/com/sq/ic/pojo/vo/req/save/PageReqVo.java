@@ -1,4 +1,4 @@
-package com.sq.ic.pojo.vo.req.page;
+package com.sq.ic.pojo.vo.req.save;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

@@ -1,5 +1,6 @@
 package com.sq.ic.pojo.vo.req.page;
 
+import com.sq.ic.pojo.vo.req.save.PageReqVo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
