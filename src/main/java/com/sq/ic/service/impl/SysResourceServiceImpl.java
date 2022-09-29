@@ -18,6 +18,7 @@ import com.sq.ic.service.SysResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +41,15 @@ public class SysResourceServiceImpl
         MpLambdaQueryWrapper<SysRoleResource> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.select(SysRoleResource::getResourceId);
         wrapper.eq(SysRoleResource::getRoleId, roleId);
+
+        List<Object> ids = roleResourceMapper.selectObjs(wrapper);
+        return Streams.map(ids, (id) -> ((Integer) id).shortValue());
+    }
+
+    private List<Short> listIds(List<Short> roleIds) {
+        MpLambdaQueryWrapper<SysRoleResource> wrapper = new MpLambdaQueryWrapper<>();
+        wrapper.select(SysRoleResource::getResourceId);
+        wrapper.in(SysRoleResource::getRoleId, roleIds);
 
         List<Object> ids = roleResourceMapper.selectObjs(wrapper);
         return Streams.map(ids, (id) -> ((Integer) id).shortValue());
@@ -96,6 +106,19 @@ public class SysResourceServiceImpl
         wrapper.ne(SysResource::getType, Constants.SysResourceType.BTN);
         wrapper.orderByAsc(SysResource::getType).orderByDesc(SysResource::getId);
         return Streams.map(baseMapper.selectList(wrapper), MapStructs.INSTANCE::po2vo);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<SysResource> listByRoleIds(List<Short> roleIds) {
+        if (CollectionUtils.isEmpty(roleIds)) return null;
+
+        List<Short> resourceIds = listIds(roleIds);
+        if (CollectionUtils.isEmpty(resourceIds)) return null;
+
+        MpLambdaQueryWrapper<SysResource> wrapper = new MpLambdaQueryWrapper<>();
+        wrapper.in(SysResource::getId, resourceIds);
+        return baseMapper.selectList(wrapper);
     }
 
     private SysResourceTreeVo po2treeVo(SysResource po) {

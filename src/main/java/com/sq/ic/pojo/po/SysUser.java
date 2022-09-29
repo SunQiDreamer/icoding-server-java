@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 public class SysUser {
@@ -21,7 +22,7 @@ public class SysUser {
     /**
      * 最后一次登录的时间
      */
-    private LocalDateTime loginTime;
+    private Date loginTime;
     /**
      * 账号的状态，0是正常，1是锁定
      */

@@ -2,6 +2,7 @@ package com.sq.ic.common.mapStruct;
 
 import com.sq.ic.pojo.list.*;
 import com.sq.ic.pojo.po.*;
+import com.sq.ic.pojo.vo.LoginVo;
 import com.sq.ic.pojo.vo.req.page.SysUserReqVo;
 import com.sq.ic.pojo.vo.req.save.*;
 import org.mapstruct.Mapper;
@@ -42,4 +43,6 @@ public interface MapStructs {
     SysResourceVo po2vo(SysResource sysResource);
 
     SysUser reqVo2po(SysUserReqVo sysUserReqVo);
+
+    LoginVo po2loginVo(SysUser user);
 }

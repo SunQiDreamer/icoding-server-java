@@ -18,4 +18,6 @@ public interface SysResourceService extends IService<SysResource> {
     List<SysResourceTreeVo> listTree();
 
     List<SysResourceVo> listParents();
+
+    List<SysResource> listByRoleIds(List<Short> roleIds);
 }
