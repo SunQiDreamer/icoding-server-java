@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.common.cache.Caches;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.shiro.TokenFilter;
+import com.sq.ic.common.util.Constants;
 import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.pojo.list.SysUserVo;
 import com.sq.ic.pojo.po.SysUser;
@@ -13,11 +14,14 @@ import com.sq.ic.pojo.vo.JsonVo;
 import com.sq.ic.pojo.vo.LoginVo;
 import com.sq.ic.pojo.vo.PageJsonVo;
 import com.sq.ic.pojo.vo.req.LoginReqVo;
+import com.sq.ic.pojo.vo.req.page.SysUserPageReqVo;
 import com.sq.ic.pojo.vo.req.page.SysUserReqVo;
 import com.sq.ic.service.SysUserService;
 import com.wf.captcha.utils.CaptchaUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,11 +60,33 @@ public class SysUserController extends BaseController<SysUser, SysUserReqVo> {
         return JsonVos.ok();
     }
 
-//    @GetMapping
-//    @ApiOperation("分页查询")
-//    public PageJsonVo<SysUserVo>
+    @Override
+    @RequiresPermissions(value = {
+            Constants.Permisson.SYS_USER_ADD,
+            Constants.Permisson.SYS_USER_UPDATE
+    }, logical = Logical.AND)
+    public JsonVo save(SysUserReqVo reqVo) {
+        if (service.saveOrUpdate(reqVo)) {
+            return JsonVos.ok(CodeMsg.SAVE_OK);
+        } else {
+            return JsonVos.raise(CodeMsg.SAVE_ERROR);
+        }
+    }
 
     @Override
+    @RequiresPermissions(Constants.Permisson.SYS_USER_REMOVE)
+    public JsonVo remove(String id) {
+        return super.remove(id);
+    }
+
+    @GetMapping
+    @ApiOperation("分页查询")
+    public PageJsonVo<SysUserVo> list(SysUserPageReqVo pageReqVo) {
+        return JsonVos.ok(service.list(pageReqVo));
+    }
+
+    @Override
+
     protected IService<SysUser> getService() {
         return service;
     }

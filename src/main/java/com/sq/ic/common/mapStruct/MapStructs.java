@@ -50,4 +50,5 @@ public interface MapStructs {
 
     SysRoleVo po2vo(SysRole sysRole);
 
+    SysUserVo po2vo(SysUser sysUser);
 }

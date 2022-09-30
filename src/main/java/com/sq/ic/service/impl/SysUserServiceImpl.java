@@ -4,26 +4,35 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sq.ic.common.cache.Caches;
 import com.sq.ic.common.enhance.MpLambdaQueryWrapper;
+import com.sq.ic.common.enhance.MpPage;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.Constants;
 import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.common.util.Streams;
+import com.sq.ic.common.util.Strings;
 import com.sq.ic.mapper.SysUserMapper;
 import com.sq.ic.pojo.dto.SysUserDto;
+import com.sq.ic.pojo.list.SysUserVo;
 import com.sq.ic.pojo.po.SysResource;
 import com.sq.ic.pojo.po.SysRole;
 import com.sq.ic.pojo.po.SysUser;
+import com.sq.ic.pojo.po.SysUserRole;
 import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.LoginVo;
+import com.sq.ic.pojo.vo.PageVo;
 import com.sq.ic.pojo.vo.req.LoginReqVo;
+import com.sq.ic.pojo.vo.req.page.SysUserPageReqVo;
+import com.sq.ic.pojo.vo.req.page.SysUserReqVo;
 import com.sq.ic.service.SysResourceService;
 import com.sq.ic.service.SysRoleService;
+import com.sq.ic.service.SysUserRoleService;
 import com.sq.ic.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -39,6 +48,9 @@ public class SysUserServiceImpl
 
     @Autowired
     private SysResourceService resourceService;
+
+    @Autowired
+    private SysUserRoleService userRoleService;
 
     @Override
     public LoginVo login(LoginReqVo reqVo) {
@@ -85,5 +97,46 @@ public class SysUserServiceImpl
         LoginVo vo = MapStructs.INSTANCE.po2loginVo(user);
         vo.setToken(token);
         return vo;
+    }
+
+    @Override
+    public boolean saveOrUpdate(SysUserReqVo reqVo) {
+        SysUser user = MapStructs.INSTANCE.reqVo2po(reqVo);
+
+        if (!saveOrUpdate(user)) return false;
+
+        Integer id = reqVo.getId();
+        if (id != null && id > 0) { // 更新
+            // 将更新成功的用户token从缓存中删除
+            String token = Caches.get(id);
+            Caches.removeToken(token);
+
+            //删除当前用户的所有角色信息
+            userRoleService.removeByUserId(reqVo.getId());
+        }
+        // 保存角色信息
+        String roleIdsStr = reqVo.getRoleIds();
+        if (Strings.isEmpty(roleIdsStr)) return true;
+
+        // 更新user_role表
+        String[] roleIds = roleIdsStr.split(",");
+        List<SysUserRole> userRoles = new ArrayList<>();
+        Integer userId = user.getId();
+        for (String roleId : roleIds) {
+            SysUserRole userRole = new SysUserRole();
+            userRole.setUserId(userId);
+            userRole.setRoleId(Short.parseShort(roleId));
+            userRoles.add(userRole);
+        }
+        return userRoleService.saveBatch(userRoles);
+    }
+
+    @Override
+    public PageVo<SysUserVo> list(SysUserPageReqVo pageReqVo) {
+        MpLambdaQueryWrapper<SysUser> wrapper = new MpLambdaQueryWrapper<>();
+        wrapper.like(pageReqVo.getKeyword(), SysUser::getUserName, SysUser::getNickName);
+        wrapper.orderByDesc(SysUser::getId);
+        MpPage<SysUser> page = baseMapper.selectPage(new MpPage<>(pageReqVo), wrapper);
+        return page.buildVo(MapStructs.INSTANCE::po2vo);
     }
 }
