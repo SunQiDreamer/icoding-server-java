@@ -81,12 +81,12 @@ public class SysUserController extends BaseController<SysUser, SysUserReqVo> {
 
     @GetMapping
     @ApiOperation("分页查询")
+    @RequiresPermissions(Constants.Permisson.SYS_USER_LIST)
     public PageJsonVo<SysUserVo> list(SysUserPageReqVo pageReqVo) {
         return JsonVos.ok(service.list(pageReqVo));
     }
 
     @Override
-
     protected IService<SysUser> getService() {
         return service;
     }
