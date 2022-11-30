@@ -6,6 +6,7 @@ import com.sq.ic.pojo.vo.LoginVo;
 import com.sq.ic.pojo.vo.req.page.SysUserReqVo;
 import com.sq.ic.pojo.vo.req.save.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -50,5 +51,8 @@ public interface MapStructs {
 
     SysRoleVo po2vo(SysRole sysRole);
 
+    @Mapping(source = "loginTime",
+            target = "loginTime",
+            qualifiedBy = MapStructFormatter.Date2Millis.class)
     SysUserVo po2vo(SysUser sysUser);
 }

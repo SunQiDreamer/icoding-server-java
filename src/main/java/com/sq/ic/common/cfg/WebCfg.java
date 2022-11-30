@@ -4,6 +4,7 @@ import com.sq.ic.common.prop.ICProperties;
 import com.sq.ic.filter.ErrorFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -28,11 +29,14 @@ public class WebCfg implements WebMvcConfigurer {
 //                .allowedMethods("GET", "POST");
 //    }
 
-//    FilterRegistrationBean<Filter> filterFilterRegistrationBean() {
-//        FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
-//        bean.setFilter(new ErrorFilter());
-//        bean.addUrlPatterns("/*");
-//        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-//        return bean;
-//    }
+    @Bean
+    public FilterRegistrationBean<Filter> filterRegistrationBean() {
+        FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
+        // 设置Filter
+        bean.setFilter(new ErrorFilter());
+        bean.addUrlPatterns("/*");
+        // 最高权限
+        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        return bean;
+    }
 }

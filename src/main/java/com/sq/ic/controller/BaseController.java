@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Arrays;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.function.Function;
 
 @Validated
@@ -21,6 +23,8 @@ public abstract class BaseController<Po, ReqVo> {
     @PostMapping("/remove")
     @ApiOperation("删除一条或多条数据")
     public JsonVo remove(@NotBlank(message = "id不能为空") @RequestParam String id) {
+
+
         if (getService().removeByIds(Arrays.asList(id.split(",")))) {
             return JsonVos.ok(CodeMsg.REMOVE_OK);
         } else {
