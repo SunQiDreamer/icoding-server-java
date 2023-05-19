@@ -1,4 +1,4 @@
-package com.sq.ic.pojo.list;
+package com.sq.ic.pojo.vo.list;
 
 import com.sq.ic.pojo.po.Course;
 import com.sq.ic.pojo.po.Grade;

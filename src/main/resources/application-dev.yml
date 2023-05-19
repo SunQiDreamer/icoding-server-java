@@ -8,3 +8,8 @@ spring:
 
 server:
   port: 9999
+
+ic:
+  cfg:
+    cors-origins:
+      - http://localhost:5173

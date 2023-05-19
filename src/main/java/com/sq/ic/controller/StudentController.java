@@ -5,8 +5,8 @@ import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.po.Student;
-import com.sq.ic.pojo.list.StudentVo;
 import com.sq.ic.pojo.vo.DataJsonVo;
+import com.sq.ic.pojo.vo.list.StudentVo;
 import com.sq.ic.pojo.vo.req.page.StudentPageReqVo;
 import com.sq.ic.pojo.vo.req.save.StudentReqVo;
 import com.sq.ic.service.StudentService;
@@ -29,9 +29,9 @@ public class StudentController extends BaseController<Student, StudentReqVo> {
     @GetMapping
     @ApiOperation("查询所有")
     public DataJsonVo<List<StudentVo>> list() {
-          List<Student> students = service.list();
-          List<StudentVo> studentVos = Streams.map(students, MapStructs.INSTANCE::po2vo);
-          return new DataJsonVo<>(studentVos);
+        List<Student> students = service.list();
+        List<StudentVo> studentVos = Streams.map(students, MapStructs.INSTANCE::po2vo);
+        return new DataJsonVo<>(studentVos);
     }
 
     @GetMapping("/page")

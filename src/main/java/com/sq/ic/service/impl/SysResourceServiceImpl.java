@@ -8,10 +8,10 @@ import com.sq.ic.common.util.Constants;
 import com.sq.ic.common.util.Streams;
 import com.sq.ic.mapper.SysResourceMapper;
 import com.sq.ic.mapper.SysRoleResourceMapper;
-import com.sq.ic.pojo.list.SysResourceTreeVo;
 import com.sq.ic.pojo.po.SysResource;
 import com.sq.ic.pojo.po.SysRoleResource;
 import com.sq.ic.pojo.vo.PageVo;
+import com.sq.ic.pojo.vo.list.SysResourceTreeVo;
 import com.sq.ic.pojo.vo.req.page.SysResourcePageReqVo;
 import com.sq.ic.pojo.vo.req.save.SysResourceVo;
 import com.sq.ic.service.SysResourceService;
@@ -36,8 +36,9 @@ public class SysResourceServiceImpl
 
     @Override
     @Transactional(readOnly = true)
-    public List<Short> listIds(Integer roleId) { //    根据roleId获取resourceId
-        if (roleId == null || roleId <= 0) return null;
+    public List<Short> listIds(Integer roleId) { // 根据roleId获取resourceId
+        if (roleId == null || roleId <= 0)
+            return null;
 
         MpLambdaQueryWrapper<SysRoleResource> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.select(SysRoleResource::getResourceId);
@@ -57,7 +58,7 @@ public class SysResourceServiceImpl
     }
 
     @Override
-    public PageVo<SysResourceVo> list(SysResourcePageReqVo reqVo) { //获取resources
+    public PageVo<SysResourceVo> list(SysResourcePageReqVo reqVo) { // 获取resources
         MpLambdaQueryWrapper<SysResource> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.like(reqVo.getKeyword(),
                 SysResource::getName,
@@ -112,10 +113,12 @@ public class SysResourceServiceImpl
     @Override
     @Transactional(readOnly = true)
     public List<SysResource> listByRoleIds(List<Short> roleIds) {
-        if (CollectionUtils.isEmpty(roleIds)) return null;
+        if (CollectionUtils.isEmpty(roleIds))
+            return null;
 
         List<Short> resourceIds = listIds(roleIds);
-        if (CollectionUtils.isEmpty(resourceIds)) return null;
+        if (CollectionUtils.isEmpty(resourceIds))
+            return null;
 
         MpLambdaQueryWrapper<SysResource> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.in(SysResource::getId, resourceIds);

@@ -1,6 +1,5 @@
-package com.sq.ic.pojo.list;
+package com.sq.ic.pojo.vo.list;
 
-import com.sq.ic.pojo.po.Hobby;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

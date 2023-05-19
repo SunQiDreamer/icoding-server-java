@@ -3,9 +3,9 @@ package com.sq.ic.controller;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.Streams;
-import com.sq.ic.pojo.list.HobbyVo;
 import com.sq.ic.pojo.po.Hobby;
 import com.sq.ic.pojo.vo.DataJsonVo;
+import com.sq.ic.pojo.vo.list.HobbyVo;
 import com.sq.ic.pojo.vo.req.save.HobbyReqVo;
 import com.sq.ic.service.HobbyService;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.function.Function;
-
 
 @RestController
 @RequestMapping("/hobby")

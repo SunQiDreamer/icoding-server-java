@@ -12,7 +12,6 @@ import com.sq.ic.common.util.Streams;
 import com.sq.ic.common.util.Strings;
 import com.sq.ic.mapper.SysUserMapper;
 import com.sq.ic.pojo.dto.SysUserDto;
-import com.sq.ic.pojo.list.SysUserVo;
 import com.sq.ic.pojo.po.SysResource;
 import com.sq.ic.pojo.po.SysRole;
 import com.sq.ic.pojo.po.SysUser;
@@ -20,6 +19,7 @@ import com.sq.ic.pojo.po.SysUserRole;
 import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.LoginVo;
 import com.sq.ic.pojo.vo.PageVo;
+import com.sq.ic.pojo.vo.list.SysUserVo;
 import com.sq.ic.pojo.vo.req.LoginReqVo;
 import com.sq.ic.pojo.vo.req.page.SysUserPageReqVo;
 import com.sq.ic.pojo.vo.req.page.SysUserReqVo;
@@ -103,7 +103,8 @@ public class SysUserServiceImpl
     public boolean saveOrUpdate(SysUserReqVo reqVo) {
         SysUser user = MapStructs.INSTANCE.reqVo2po(reqVo);
 
-        if (!saveOrUpdate(user)) return false;
+        if (!saveOrUpdate(user))
+            return false;
 
         Integer id = reqVo.getId();
         if (id != null && id > 0) { // 更新
@@ -111,12 +112,13 @@ public class SysUserServiceImpl
             String token = Caches.get(id);
             Caches.removeToken(token);
 
-            //删除当前用户的所有角色信息
+            // 删除当前用户的所有角色信息
             userRoleService.removeByUserId(reqVo.getId());
         }
         // 保存角色信息
         String roleIdsStr = reqVo.getRoleIds();
-        if (Strings.isEmpty(roleIdsStr)) return true;
+        if (Strings.isEmpty(roleIdsStr))
+            return true;
 
         // 更新user_role表
         String[] roleIds = roleIdsStr.split(",");

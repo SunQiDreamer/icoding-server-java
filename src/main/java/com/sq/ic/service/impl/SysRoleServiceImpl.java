@@ -9,11 +9,11 @@ import com.sq.ic.common.util.Streams;
 import com.sq.ic.common.util.Strings;
 import com.sq.ic.mapper.SysRoleMapper;
 import com.sq.ic.mapper.SysUserRoleMapper;
-import com.sq.ic.pojo.list.SysRoleVo;
 import com.sq.ic.pojo.po.SysRole;
 import com.sq.ic.pojo.po.SysRoleResource;
 import com.sq.ic.pojo.po.SysUserRole;
 import com.sq.ic.pojo.vo.PageVo;
+import com.sq.ic.pojo.vo.list.SysRoleVo;
 import com.sq.ic.pojo.vo.req.page.SysRolePageReqVo;
 import com.sq.ic.pojo.vo.req.save.SysRoleReqVo;
 import com.sq.ic.service.SysRoleResourceService;
@@ -38,14 +38,15 @@ public class SysRoleServiceImpl
     @Autowired
     private SysRoleResourceService roleResourceService;
 
-
     @Override
     public List<SysRole> listByUserId(Integer userId) {
         // 1.根据userId 从sys_user_role表中查出roleId
         // 2.roleIds从sys_role中查出SysRole
-        if (userId == null || userId <= 0) return null;
+        if (userId == null || userId <= 0)
+            return null;
         List<Short> roleIds = listId(userId);
-        if (CollectionUtils.isEmpty(roleIds)) return null;
+        if (CollectionUtils.isEmpty(roleIds))
+            return null;
 
         MpLambdaQueryWrapper<SysRole> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.in(SysRole::getId, roleIds);
@@ -56,7 +57,8 @@ public class SysRoleServiceImpl
     @Override
     @Transactional(readOnly = true)
     public List<Short> listIds(Integer userId) {
-        if (userId == null || userId < 0) return null;
+        if (userId == null || userId < 0)
+            return null;
 
         MpLambdaQueryWrapper<SysUserRole> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.select(SysUserRole::getRoleId);
@@ -82,7 +84,8 @@ public class SysRoleServiceImpl
         // 更新，查出之前要拥有这个角色的用户，退出重新登录
         // 更新，删除当前角色拥有的所有权限资源，重新添加权限资源
         SysRole role = MapStructs.INSTANCE.reqVo2po(reqVo);
-        if (!saveOrUpdate(role)) return false;
+        if (!saveOrUpdate(role))
+            return false;
 
         Short id = reqVo.getId();
         if (id != null && id > 0) { // 有id说明是更新操作
@@ -102,10 +105,11 @@ public class SysRoleServiceImpl
 
         // 保存角色信息
         String resourceIdStr = reqVo.getResourceIds();
-        if (Strings.isEmpty(resourceIdStr)) return true;
+        if (Strings.isEmpty(resourceIdStr))
+            return true;
 
         String[] resourceIds = resourceIdStr.split(",");
-        List<SysRoleResource>  roleResources = new ArrayList<>();
+        List<SysRoleResource> roleResources = new ArrayList<>();
         Short roleId = role.getId();
         for (String resourceId : resourceIds) { // 构建SysUserRole对象
             SysRoleResource roleResource = new SysRoleResource();
@@ -116,8 +120,9 @@ public class SysRoleServiceImpl
         return roleResourceService.saveBatch(roleResources);
     }
 
-    private List<Short> listId(Integer userId) {  // 根据userId 从sys_user_role表中查出roleId
-        if (userId == null || userId <= 0) return null;
+    private List<Short> listId(Integer userId) { // 根据userId 从sys_user_role表中查出roleId
+        if (userId == null || userId <= 0)
+            return null;
 
         MpLambdaQueryWrapper<SysUserRole> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.select(SysUserRole::getRoleId);

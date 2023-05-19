@@ -1,15 +1,15 @@
-package com.sq.ic.pojo.list;
+package com.sq.ic.pojo.vo.list;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel("爱好")
-public class HobbyVo {
+@ApiModel("系统角色")
+public class SysRoleVo {
     @ApiModelProperty("id")
     private Short id;
 
-    @ApiModelProperty("爱好名称")
+    @ApiModelProperty("名称")
     private String name;
 }

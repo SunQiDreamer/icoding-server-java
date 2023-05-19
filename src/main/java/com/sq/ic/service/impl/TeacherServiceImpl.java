@@ -6,10 +6,10 @@ import com.sq.ic.common.enhance.MpPage;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.Streams;
 import com.sq.ic.mapper.TeacherMapper;
-import com.sq.ic.pojo.list.HobbyVo;
-import com.sq.ic.pojo.list.TeacherVo;
 import com.sq.ic.pojo.po.Teacher;
 import com.sq.ic.pojo.vo.PageVo;
+import com.sq.ic.pojo.vo.list.HobbyVo;
+import com.sq.ic.pojo.vo.list.TeacherVo;
 import com.sq.ic.pojo.vo.req.page.TeacherPageReqVo;
 import com.sq.ic.service.GradeService;
 import com.sq.ic.service.HobbyService;
@@ -60,7 +60,7 @@ public class TeacherServiceImpl
         List<Teacher> teachers = list();
         List<TeacherVo> teacherVos = new ArrayList<>();
         for (Teacher teacher : teachers) {
-            String [] hobbyIds = teacher.getHobbyIds().split(",");
+            String[] hobbyIds = teacher.getHobbyIds().split(",");
             List<HobbyVo> hobbyVos = Streams.map(hobbyService.list(List.of(hobbyIds)), MapStructs.INSTANCE::po2vo);
 
             TeacherVo teacherVo = MapStructs.INSTANCE.po2vo(teacher);

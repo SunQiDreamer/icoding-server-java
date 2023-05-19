@@ -84,6 +84,15 @@ public class SwaggerCfg implements InitializingBean {
                 "教师系统");
     }
 
+    @Bean
+    public Docket redisDocket() {
+        return groupDocket(
+                "06_RedisDemo",
+                "/redis.*",
+                "RedisDemo",
+                "RedisDemo");
+    }
+
     private Docket groupDocket(String group,
                                String regex,
                                String title,

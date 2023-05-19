@@ -1,4 +1,4 @@
-package com.sq.ic.pojo.list;
+package com.sq.ic.pojo.vo.list;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

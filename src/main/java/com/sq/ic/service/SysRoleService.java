@@ -1,9 +1,9 @@
 package com.sq.ic.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.sq.ic.pojo.list.SysRoleVo;
 import com.sq.ic.pojo.po.SysRole;
 import com.sq.ic.pojo.vo.PageVo;
+import com.sq.ic.pojo.vo.list.SysRoleVo;
 import com.sq.ic.pojo.vo.req.page.SysRolePageReqVo;
 import com.sq.ic.pojo.vo.req.save.SysRoleReqVo;
 
