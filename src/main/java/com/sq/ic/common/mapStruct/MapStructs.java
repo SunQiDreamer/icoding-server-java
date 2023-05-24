@@ -53,4 +53,6 @@ public interface MapStructs {
 
         @Mapping(source = "loginTime", target = "loginTime", qualifiedBy = MapStructFormatter.Date2Millis.class)
         SysUserVo po2vo(SysUser sysUser);
+
+        Teacher req2po(TeacherReqVo reqVo);
 }

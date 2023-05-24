@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class Teacher {
+
     private Integer id;
 
     private String name;
@@ -16,18 +17,12 @@ public class Teacher {
     // 性别： 0 male, 1 female
     private Short sex;
 
-    // 教的班级
-    private String gradeIds;
-
     // 主教的课程
     @ForeignField(Course.class)
     private Short courseId;
 
     // 是否是班主任
     private Boolean isMain;
-
-    // 爱好
-    private String hobbyIds;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

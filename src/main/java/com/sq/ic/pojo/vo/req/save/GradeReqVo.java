@@ -15,6 +15,6 @@ public class GradeReqVo {
     private String name;
 
     @ApiModelProperty(value = "班主任id", required = true)
-    private Short mainTeacherId;
+    private Integer mainTeacherId;
 
 }

@@ -28,4 +28,9 @@ public class HobbyServiceImpl
         return baseMapper.selectListByStudentId(studentId);
     }
 
+    @Override
+    public List<HobbyVo> listByTeacherId(Integer teacherId) {
+        return baseMapper.selectListByTeacherId(teacherId);
+    }
+
 }

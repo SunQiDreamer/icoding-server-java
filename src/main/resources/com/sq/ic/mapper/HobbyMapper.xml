@@ -17,4 +17,17 @@
              s_h.student_id = #{id}
     </select>
 
+    <select id="selectListByTeacherId" parameterType="int" resultType="HobbyVo">
+        SELECT 
+            h.id, h.name
+        FROM 
+			teacher_hobby t_h
+        JOIN 
+			hobby h
+		ON 
+            h.id = t_h.hobby_id
+		WHERE
+             t_h.teacher_id = #{id}
+    </select>
+
 </mapper>

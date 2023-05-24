@@ -11,4 +11,8 @@ public interface GradeService extends IService<Grade> {
     boolean addMainTeacher(GradeReqVo reqVo);
 
     List<GradeVo> listGradeVos();
+
+    List<GradeVo> listByTeacherId(Integer teacherId);
+
+    boolean saveOrUpdate(GradeReqVo reqVo);
 }

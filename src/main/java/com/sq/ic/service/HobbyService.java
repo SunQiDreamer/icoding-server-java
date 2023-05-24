@@ -10,4 +10,6 @@ public interface HobbyService extends IService<Hobby> {
     List<Hobby> list(List<String> hobbyIds);
 
     List<HobbyVo> listByStudentId(Integer studentId);
+
+    List<HobbyVo> listByTeacherId(Integer teacherId);
 }

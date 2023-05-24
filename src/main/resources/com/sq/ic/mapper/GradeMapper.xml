@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sq.ic.mapper.GradeMapper">
+    <select id="selectListByTeacherId" parameterType="int" resultType="GradeVo">
+        SELECT 
+            g.id, g.name
+        FROM 
+			teacher_grade t_g
+        JOIN 
+			grade g
+		ON 
+            g.id = t_g.grade_id
+		WHERE
+             t_g.teacher_id = #{id}
+    </select>
+
+</mapper>

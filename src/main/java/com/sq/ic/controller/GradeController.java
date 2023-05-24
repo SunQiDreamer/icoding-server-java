@@ -5,6 +5,7 @@ import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.JsonVos;
 import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.po.Grade;
+import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.DataJsonVo;
 import com.sq.ic.pojo.vo.JsonVo;
 import com.sq.ic.pojo.vo.list.GradeVo;
@@ -41,6 +42,15 @@ public class GradeController extends BaseController<Grade, GradeReqVo> {
         Grade grade = service.getById(id);
         GradeVo gradeVo = MapStructs.INSTANCE.po2vo(grade);
         return new DataJsonVo<>(gradeVo);
+    }
+
+    @Override
+    public JsonVo save(GradeReqVo reqVo) {
+        if (service.saveOrUpdate(reqVo)) {
+            return JsonVos.ok();
+        }
+
+        return JsonVos.raise(CodeMsg.SAVE_ERROR);
     }
 
     @PostMapping("/addMainTeacher")

@@ -1,8 +1,5 @@
 package com.sq.ic.pojo.vo.list;
 
-import com.sq.ic.pojo.po.Course;
-import com.sq.ic.pojo.po.Grade;
-import com.sq.ic.pojo.po.Hobby;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,10 +20,10 @@ public class TeacherVo {
     private Short sex;
 
     @ApiModelProperty("班级")
-    private List<Grade> grades;
+    private List<GradeVo> grades;
 
     @ApiModelProperty("教的课程")
-    private Course course;
+    private CourseVo course;
 
     @ApiModelProperty("是否是班主任")
     private Boolean isMain;

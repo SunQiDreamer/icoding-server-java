@@ -15,7 +15,7 @@ public class Grade {
 
     // 班主任
     @TableField("mainTeacherId")
-    private Short mainTeacherId;
+    private Integer mainTeacherId;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

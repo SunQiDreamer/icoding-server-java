@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class TeacherReqVo {
+
+    private Integer id;
+
     @NotBlank(message = "不能为空")
     private String name;
 
@@ -18,6 +21,9 @@ public class TeacherReqVo {
     private Short courseId;
 
     private Boolean isMain;
+
+    @NotBlank
+    private String gradeIds;
 
     private String hobbyIds;
 }

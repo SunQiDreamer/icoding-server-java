@@ -1,8 +1,5 @@
 package com.sq.ic.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Service;
