@@ -1,11 +1,14 @@
 package com.sq.ic.service;
 
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.pojo.po.Grade;
-import com.sq.ic.pojo.vo.JsonVo;
+import com.sq.ic.pojo.vo.list.GradeVo;
 import com.sq.ic.pojo.vo.req.save.GradeReqVo;
 
 public interface GradeService extends IService<Grade> {
-    JsonVo addMainTeacher(GradeReqVo reqVo);
+    boolean addMainTeacher(GradeReqVo reqVo);
 
+    List<GradeVo> listGradeVos();
 }

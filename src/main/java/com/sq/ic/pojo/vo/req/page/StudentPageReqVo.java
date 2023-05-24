@@ -16,4 +16,7 @@ public class StudentPageReqVo extends PageReqVo {
 
     @ApiModelProperty("班级id")
     private Short gradeId;
+
+    @ApiModelProperty("爱好id")
+    private String hobbyIds;
 }

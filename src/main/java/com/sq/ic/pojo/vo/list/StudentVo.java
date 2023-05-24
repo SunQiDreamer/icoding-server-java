@@ -18,8 +18,8 @@ public class StudentVo {
     @ApiModelProperty("no")
     private Integer no;
 
-    @ApiModelProperty("gradeId")
-    private Integer gradeId;
+    @ApiModelProperty("班级")
+    private GradeVo grade;
 
     @ApiModelProperty("性别 0: male 1: female")
     private Short sex;

@@ -3,7 +3,6 @@ package com.sq.ic.controller;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.util.JsonVos;
-import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.po.Teacher;
 import com.sq.ic.pojo.vo.DataJsonVo;
 import com.sq.ic.pojo.vo.list.TeacherVo;

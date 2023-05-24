@@ -110,7 +110,6 @@ public class SysRoleServiceImpl
 
         String[] resourceIds = resourceIdStr.split(",");
         List<SysRoleResource> roleResources = new ArrayList<>();
-        Short roleId = role.getId();
         for (String resourceId : resourceIds) { // 构建SysUserRole对象
             SysRoleResource roleResource = new SysRoleResource();
             roleResource.setResourceId(Short.parseShort(resourceId));

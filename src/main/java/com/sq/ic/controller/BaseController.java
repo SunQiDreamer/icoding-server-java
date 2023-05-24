@@ -22,7 +22,6 @@ public abstract class BaseController<Po, ReqVo> {
     @PostMapping("/remove")
     @ApiOperation("删除一条或多条数据")
     public JsonVo remove(@NotBlank(message = "id不能为空") @RequestParam String id) {
-
         if (getService().removeByIds(Arrays.asList(id.split(",")))) {
             return JsonVos.ok(CodeMsg.REMOVE_OK);
         } else {
@@ -33,6 +32,10 @@ public abstract class BaseController<Po, ReqVo> {
     @PostMapping("/save")
     @ApiOperation("添加或更新")
     public JsonVo save(ReqVo reqVo) {
+
+        System.out.println("添加或更新");
+        System.out.println(reqVo);
+
         Po po = getFunction().apply(reqVo);
         if (getService().saveOrUpdate(po)) {
             return JsonVos.ok(CodeMsg.SAVE_OK);

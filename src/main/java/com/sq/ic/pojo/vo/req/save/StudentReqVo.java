@@ -4,7 +4,6 @@ import com.sq.ic.common.validator.BoolNumber;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class StudentReqVo {
@@ -12,6 +11,7 @@ public class StudentReqVo {
     private Integer id;
 
     @ApiModelProperty(value = "name")
+    @NotBlank
     private String name;
 
     @BoolNumber

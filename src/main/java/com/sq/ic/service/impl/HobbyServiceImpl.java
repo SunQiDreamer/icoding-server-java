@@ -3,6 +3,7 @@ package com.sq.ic.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sq.ic.mapper.HobbyMapper;
 import com.sq.ic.pojo.po.Hobby;
+import com.sq.ic.pojo.vo.list.HobbyVo;
 import com.sq.ic.service.HobbyService;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -21,4 +22,10 @@ public class HobbyServiceImpl
         List<Hobby> hobbies = baseMapper.selectBatchIds(hobbyIds);
         return hobbies;
     }
+
+    @Override
+    public List<HobbyVo> listByStudentId(Integer studentId) {
+        return baseMapper.selectListByStudentId(studentId);
+    }
+
 }

@@ -16,6 +16,7 @@ public class GradeVo {
     @ApiModelProperty("id")
     private Short id;
 
-    @ApiModelProperty("班主任id")
-    private Short mainTeacherId;
+    @ApiModelProperty("班主任")
+    private TeacherVo mainTeacher;
+
 }

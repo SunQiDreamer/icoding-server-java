@@ -13,6 +13,9 @@ import java.util.List;
 @ApiModel("老师")
 public class TeacherVo {
 
+    @ApiModelProperty("id")
+    private Short id;
+
     @ApiModelProperty("姓名")
     private String name;
 

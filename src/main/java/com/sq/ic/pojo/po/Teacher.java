@@ -6,7 +6,6 @@ import com.sq.ic.common.foreign.anno.ForeignField;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 public class Teacher {
@@ -14,7 +13,7 @@ public class Teacher {
 
     private String name;
 
-    //    性别： 0 male, 1 female
+    // 性别： 0 male, 1 female
     private Short sex;
 
     // 教的班级

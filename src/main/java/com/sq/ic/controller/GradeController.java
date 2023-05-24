@@ -13,6 +13,7 @@ import com.sq.ic.service.GradeService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,15 +31,26 @@ public class GradeController extends BaseController<Grade, GradeReqVo> {
     @GetMapping("/list")
     @ApiOperation("查询所有")
     public DataJsonVo<List<GradeVo>> list() {
-        List<Grade> grades = service.list();
-        List<GradeVo> gradeVos = Streams.map(grades, MapStructs.INSTANCE::po2vo);
+        List<GradeVo> gradeVos = service.listGradeVos();
         return JsonVos.ok(gradeVos);
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询班级")
+    public DataJsonVo<GradeVo> grade(@PathVariable Integer id) {
+        Grade grade = service.getById(id);
+        GradeVo gradeVo = MapStructs.INSTANCE.po2vo(grade);
+        return new DataJsonVo<>(gradeVo);
     }
 
     @PostMapping("/addMainTeacher")
     @ApiOperation("添加班主任")
     public JsonVo addMainTeacher(GradeReqVo reqVo) {
-        return service.addMainTeacher(reqVo);
+        if (service.addMainTeacher(reqVo)) {
+            return JsonVos.ok("添加成功");
+        } else {
+            return JsonVos.error("添加失败");
+        }
     }
 
     @Override

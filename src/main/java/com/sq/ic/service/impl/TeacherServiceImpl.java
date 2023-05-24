@@ -20,16 +20,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class TeacherServiceImpl
         extends ServiceImpl<TeacherMapper, Teacher>
         implements TeacherService {
-
-    @Autowired
-    private GradeService gradeService;
 
     @Autowired
     private HobbyService hobbyService;
