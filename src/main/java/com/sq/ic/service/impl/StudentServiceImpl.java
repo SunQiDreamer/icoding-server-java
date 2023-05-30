@@ -10,6 +10,7 @@ import com.sq.ic.pojo.po.Grade;
 import com.sq.ic.pojo.po.Hobby;
 import com.sq.ic.pojo.po.Student;
 import com.sq.ic.pojo.po.StudentHobby;
+import com.sq.ic.pojo.vo.PageJsonVo;
 import com.sq.ic.pojo.vo.PageVo;
 import com.sq.ic.pojo.vo.list.GradeVo;
 import com.sq.ic.pojo.vo.list.HobbyVo;
@@ -65,7 +66,31 @@ public class StudentServiceImpl
         return studentVos;
     }
 
-    public List<HobbyVo> hobbyVosByStudentId(Integer studentId) {
+    @Override
+    @Transactional(readOnly = true)
+    public PageVo<StudentVo> list(StudentPageReqVo pageReqVo) {
+        List<StudentVo> studentVos = baseMapper.selectByKeyword(pageReqVo.getKeyword());
+        // MpLambdaQueryWrapper<Student> wrapper = new MpLambdaQueryWrapper<>();
+        // wrapper.like(pageReqVo.getKeyword(), Student::getName, Student::getNo);
+        MpPage<StudentPageReqVo> page = new MpPage<>(pageReqVo);
+        // List<Student> students = baseMapper.selectPage(new MpPage<>(pageReqVo),
+        // wrapper).getRecords();
+        // List<StudentVo> studentVos = Streams.map(students, (student) -> {
+        // StudentVo studentVo = MapStructs.INSTANCE.po2vo(student);
+
+        // Grade grade = gradeService.getById(student.getGradeId());
+        // GradeVo gradeVo = MapStructs.INSTANCE.po2vo(grade);
+        // studentVo.setGrade(gradeVo);
+
+        // List<HobbyVo> hobbyVos = hobbyVosByStudentId(student.getId());
+        // studentVo.setHobbyVos(hobbyVos);
+
+        // return studentVo;
+        // });
+        return page.commonBuldVo(studentVos);
+    }
+
+    private List<HobbyVo> hobbyVosByStudentId(Integer studentId) {
         if (studentId == null)
             return null;
 
@@ -97,33 +122,8 @@ public class StudentServiceImpl
         return studentHobbyService.saveBatch(studentHobbies);
     }
 
-    // @Override
-    // @Transactional(readOnly = true)
-    // public PageVo<StudentVo> list(StudentPageReqVo query) {
-    // return baseMapper.selectList(query);
-
-    // 查询条件
-    // MpLambdaQueryWrapper<Student> wrapper = new MpLambdaQueryWrapper<>();
-    // wrapper.like(query.getName(), Student::getName);
-
-    // if (query.getSex() != null) {
-    // wrapper.eq(Student::getSex, query.getSex());
-    // }
-
-    // if (query.getGradeId() != null) {
-    // wrapper.eq(Student::getGradeId, query.getGradeId());
-    // }
-    // // 排序
-    // wrapper.orderByDesc(Student::getId);
-
-    // MpPage<Student> page = baseMapper.selectPage(new MpPage<Student>(query),
-    // wrapper);
-    // List<StudentVo> studentVos = new ArrayList<>();
-    // page.getRecords().forEach(student -> studentVos.add(getStudentVo(student)));
-    // return page.commonBuldVo(studentVos);
-    // }
-
     @Override
+    @Transactional(readOnly = true)
     public StudentVo getStudentById(Integer id) {
         Student student = baseMapper.selectById(id);
 
@@ -137,12 +137,6 @@ public class StudentServiceImpl
         studentVo.setHobbyVos(hobbyVos);
 
         return studentVo;
-    }
-
-    @Override
-    public PageVo<StudentVo> list(StudentPageReqVo pageReqVo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'list'");
     }
 
     @Override

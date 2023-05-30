@@ -3,8 +3,6 @@ package com.sq.ic.pojo.vo.req.save;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 public class PageReqVo {
     private static final int DEFAULT_SIZE = 10;

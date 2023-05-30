@@ -9,4 +9,6 @@ import com.sq.ic.pojo.vo.list.GradeVo;
 public interface GradeMapper extends BaseMapper<Grade> {
 
     List<GradeVo> selectListByTeacherId(Integer teacherId);
+
+    GradeVo getGradeById(Integer id);
 }

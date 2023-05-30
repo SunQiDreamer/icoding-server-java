@@ -7,7 +7,7 @@ import com.sq.ic.pojo.po.Hobby;
 import com.sq.ic.pojo.vo.list.HobbyVo;
 
 public interface HobbyMapper extends BaseMapper<Hobby> {
-    List<HobbyVo> selectListByStudentId(Integer studentId);
+    List<HobbyVo> selectListByStudentId(Integer id);
 
-    List<HobbyVo> selectListByTeacherId(Integer teacherId);
+    List<HobbyVo> selectListByTeacherId(Integer id);
 }

@@ -39,8 +39,7 @@ public class GradeController extends BaseController<Grade, GradeReqVo> {
     @GetMapping("/{id}")
     @ApiOperation("根据id查询班级")
     public DataJsonVo<GradeVo> grade(@PathVariable Integer id) {
-        Grade grade = service.getById(id);
-        GradeVo gradeVo = MapStructs.INSTANCE.po2vo(grade);
+        GradeVo gradeVo = service.getGradeById(id);
         return new DataJsonVo<>(gradeVo);
     }
 

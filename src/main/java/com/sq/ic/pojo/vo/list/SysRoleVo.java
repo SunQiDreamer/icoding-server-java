@@ -1,5 +1,9 @@
 package com.sq.ic.pojo.vo.list;
 
+import java.util.List;
+
+import com.sq.ic.pojo.vo.req.save.SysResourceVo;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -12,4 +16,6 @@ public class SysRoleVo {
 
     @ApiModelProperty("名称")
     private String name;
+
+    private List<SysResourceVo> resources;
 }

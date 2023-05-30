@@ -15,4 +15,6 @@ public interface GradeService extends IService<Grade> {
     List<GradeVo> listByTeacherId(Integer teacherId);
 
     boolean saveOrUpdate(GradeReqVo reqVo);
+
+    GradeVo getGradeById(Integer id);
 }

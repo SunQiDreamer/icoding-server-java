@@ -13,9 +13,12 @@ import com.sq.ic.pojo.po.SysRole;
 import com.sq.ic.pojo.po.SysRoleResource;
 import com.sq.ic.pojo.po.SysUserRole;
 import com.sq.ic.pojo.vo.PageVo;
+import com.sq.ic.pojo.vo.list.SysResourceTreeVo;
+import com.sq.ic.pojo.vo.list.SysRoleTreeVo;
 import com.sq.ic.pojo.vo.list.SysRoleVo;
 import com.sq.ic.pojo.vo.req.page.SysRolePageReqVo;
 import com.sq.ic.pojo.vo.req.save.SysRoleReqVo;
+import com.sq.ic.service.SysResourceService;
 import com.sq.ic.service.SysRoleResourceService;
 import com.sq.ic.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +89,6 @@ public class SysRoleServiceImpl
         SysRole role = MapStructs.INSTANCE.reqVo2po(reqVo);
         if (!saveOrUpdate(role))
             return false;
-
         Short id = reqVo.getId();
         if (id != null && id > 0) { // 有id说明是更新操作
             MpLambdaQueryWrapper<SysUserRole> wrapper = new MpLambdaQueryWrapper<>();
@@ -112,10 +114,10 @@ public class SysRoleServiceImpl
         List<SysRoleResource> roleResources = new ArrayList<>();
         for (String resourceId : resourceIds) { // 构建SysUserRole对象
             SysRoleResource roleResource = new SysRoleResource();
+            roleResource.setRoleId(id);
             roleResource.setResourceId(Short.parseShort(resourceId));
             roleResources.add(roleResource);
         }
-
         return roleResourceService.saveBatch(roleResources);
     }
 
@@ -130,4 +132,5 @@ public class SysRoleServiceImpl
         List<Object> ids = userRoleMapper.selectObjs(wrapper);
         return Streams.map(ids, id -> ((Integer) id).shortValue());
     }
+
 }

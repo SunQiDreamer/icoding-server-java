@@ -32,7 +32,7 @@ public class SysResourceController extends BaseController<SysResource, SysResour
 
     @GetMapping("/ids")
     @ApiOperation("根据roleId获取资源id")
-    @RequiresPermissions(Constants.Permisson.SYS_RESOURCE_LIST)
+    // @RequiresPermissions(Constants.Permisson.SYS_RESOURCE_LIST)
     public DataJsonVo<List<Short>> ids(Integer roleId) {
         return JsonVos.ok(service.listIds(roleId));
     }
@@ -55,7 +55,7 @@ public class SysResourceController extends BaseController<SysResource, SysResour
 
     @GetMapping("/listTree")
     @ApiOperation("查询所有（树状结构结构展示）")
-    @RequiresPermissions(Constants.Permisson.SYS_RESOURCE_LIST)
+    // @RequiresPermissions(Constants.Permisson.SYS_RESOURCE_LIST)
     public DataJsonVo<List<SysResourceTreeVo>> listTree() {
         return JsonVos.ok(service.listTree());
     }

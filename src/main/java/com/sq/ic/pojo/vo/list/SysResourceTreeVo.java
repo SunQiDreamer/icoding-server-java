@@ -12,6 +12,9 @@ public class SysResourceTreeVo {
     @ApiModelProperty("id")
     private Short id;
 
+    @ApiModelProperty("id")
+    private String key;
+
     @ApiModelProperty("名称")
     private String title;
 

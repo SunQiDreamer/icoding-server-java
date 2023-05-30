@@ -83,13 +83,16 @@ public class SysResourceServiceImpl
         List<SysResource> pos = baseMapper.selectList(wrapper);
         for (SysResource po : pos) {
             SysResourceTreeVo vo = po2treeVo(po);
+            if (po.getPermission() != null) {
+                vo.setKey(po.getPermission() + '_' + po.getId());
+            }
 
             doneVos.put(vo.getId(), vo);
 
             Short type = po.getType();
-            if (type == Constants.SysResourceType.DIR) {
+            if (type == Constants.SysResourceType.MENU) {
                 vos.add(vo);
-            } else {
+            } else if (type == Constants.SysResourceType.BTN) {
                 SysResourceTreeVo parentVo = doneVos.get(po.getParentId());
                 List<SysResourceTreeVo> children = parentVo.getChildren();
                 if (children == null) {

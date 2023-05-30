@@ -23,6 +23,7 @@ public class WebCfg implements WebMvcConfigurer {
         registry.addMapping("/**")
                 // 开放哪些IP、端口、域名的访问权限
                 .allowedOrigins(properties.getCfg().getCorsOrigins())
+                // .allowedOriginPatterns("*")
                 // 是否允许发送Cookie信息
                 .allowCredentials(true)
                 // 哪些HTTP方法允许跨域访问

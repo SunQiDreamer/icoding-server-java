@@ -2,7 +2,6 @@ package com.sq.ic.pojo.vo.req.save;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.apache.logging.log4j.message.Message;
 
 import javax.validation.constraints.NotBlank;
 

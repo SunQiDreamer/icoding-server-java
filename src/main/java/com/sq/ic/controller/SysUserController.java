@@ -6,6 +6,7 @@ import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.shiro.TokenFilter;
 import com.sq.ic.common.util.Constants;
 import com.sq.ic.common.util.JsonVos;
+import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.po.SysUser;
 import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.DataJsonVo;
@@ -27,7 +28,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
+import java.util.List;
 import java.util.function.Function;
 
 @RestController
@@ -61,10 +64,10 @@ public class SysUserController extends BaseController<SysUser, SysUserReqVo> {
     }
 
     @Override
-    @RequiresPermissions(value = {
-            Constants.Permisson.SYS_USER_ADD,
-            Constants.Permisson.SYS_USER_UPDATE
-    }, logical = Logical.AND)
+    // @RequiresPermissions(value = {
+    // Constants.Permisson.SYS_USER_ADD,
+    // Constants.Permisson.SYS_USER_UPDATE
+    // }, logical = Logical.AND)
     public JsonVo save(SysUserReqVo reqVo) {
         if (service.saveOrUpdate(reqVo)) {
             return JsonVos.ok(CodeMsg.SAVE_OK);
@@ -74,7 +77,7 @@ public class SysUserController extends BaseController<SysUser, SysUserReqVo> {
     }
 
     @Override
-    @RequiresPermissions(Constants.Permisson.SYS_USER_REMOVE)
+    // @RequiresPermissions(Constants.Permisson.SYS_USER_REMOVE)
     public JsonVo remove(String id) {
         return super.remove(id);
     }
@@ -84,6 +87,23 @@ public class SysUserController extends BaseController<SysUser, SysUserReqVo> {
     @RequiresPermissions(Constants.Permisson.SYS_USER_LIST)
     public PageJsonVo<SysUserVo> list(SysUserPageReqVo pageReqVo) {
         return JsonVos.ok(service.list(pageReqVo));
+    }
+
+    @GetMapping("/list")
+    @ApiOperation("查询所有")
+    // @RequiresPermissions(Constants.Permisson.SYS_USER_LIST)
+    public DataJsonVo<List<SysUserVo>> list() {
+        List<SysUserVo> sysUserVos = service.listUser();
+        return JsonVos.ok(sysUserVos);
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("根据id获取用户")
+    // @RequiresPermissions(Constants.Permisson.SYS_USER_LIST)
+    public DataJsonVo<SysUserVo> user(@PathVariable Integer id) {
+        SysUserVo userVo = service.user(id);
+        System.out.println("userVo:" + userVo);
+        return new DataJsonVo<>(userVo);
     }
 
     @Override

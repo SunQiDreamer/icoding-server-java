@@ -13,11 +13,11 @@ public class SysUserReqVo {
 
     @NotBlank(message = "昵称不能为空")
     @ApiModelProperty(value = "昵称【不能为空】", required = true)
-    private String nickname;
+    private String nickName;
 
     @NotBlank(message = "用户名不能为空")
     @ApiModelProperty(value = "用户名【不能为空】", required = true)
-    private String username;
+    private String userName;
 
     @ApiModelProperty("密码【如果为空，说明不修改密码】")
     private String password;

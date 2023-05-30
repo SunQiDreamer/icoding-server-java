@@ -82,4 +82,9 @@ public class GradeServiceImpl
         return true;
     }
 
+    @Override
+    public GradeVo getGradeById(Integer id) {
+        return baseMapper.getGradeById(id);
+    }
+
 }

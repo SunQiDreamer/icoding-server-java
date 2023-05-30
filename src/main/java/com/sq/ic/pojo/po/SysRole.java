@@ -15,9 +15,9 @@ public class SysRole {
      */
     private String name;
 
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    // @TableField(fill = FieldFill.INSERT)
+    // private LocalDateTime createTime;
 
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
+    // @TableField(fill = FieldFill.INSERT_UPDATE)
+    // private LocalDateTime updateTime;
 }

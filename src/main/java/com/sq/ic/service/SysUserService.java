@@ -1,5 +1,7 @@
 package com.sq.ic.service;
 
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sq.ic.pojo.po.SysUser;
 import com.sq.ic.pojo.vo.LoginVo;
@@ -16,4 +18,8 @@ public interface SysUserService extends IService<SysUser> {
     boolean saveOrUpdate(SysUserReqVo reqVo);
 
     PageVo<SysUserVo> list(SysUserPageReqVo pageReqVo);
+
+    List<SysUserVo> listUser();
+
+    SysUserVo user(Integer id);
 }

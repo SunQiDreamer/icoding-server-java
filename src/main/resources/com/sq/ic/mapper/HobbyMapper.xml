@@ -1,33 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sq.ic.mapper.HobbyMapper">
-    <select id="selectListByStudentId" parameterType="int" resultType="HobbyVo">
-        SELECT 
-            h.id, h.name
-        FROM 
-			student_hobby s_h
-        JOIN 
-			hobby h
-		ON 
-            h.id = s_h.hobby_id
-		WHERE
-             s_h.student_id = #{id}
-    </select>
+    <select id="selectListByStudentId" parameterType="int" resultType="HobbyVo"> SELECT h.id, h.name
+        FROM student_hobby s_h JOIN hobby h ON h.id = s_h.hobby_id WHERE s_h.student_id = #{id} </select>
 
-    <select id="selectListByTeacherId" parameterType="int" resultType="HobbyVo">
-        SELECT 
-            h.id, h.name
-        FROM 
-			teacher_hobby t_h
-        JOIN 
-			hobby h
-		ON 
-            h.id = t_h.hobby_id
-		WHERE
-             t_h.teacher_id = #{id}
-    </select>
+    <select id="selectListByTeacherId" parameterType="int" resultType="HobbyVo"> SELECT h.id, h.name
+        FROM teacher_hobby t_h JOIN hobby h ON h.id = t_h.hobby_id WHERE t_h.teacher_id = #{id} </select>
 
 </mapper>

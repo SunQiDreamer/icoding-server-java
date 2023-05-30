@@ -140,4 +140,16 @@ public class SysUserServiceImpl
         MpPage<SysUser> page = baseMapper.selectPage(new MpPage<>(pageReqVo), wrapper);
         return page.buildVo(MapStructs.INSTANCE::po2vo);
     }
+
+    @Override
+    public List<SysUserVo> listUser() {
+        return baseMapper.listUser();
+    }
+
+    @Override
+    public SysUserVo user(Integer id) {
+        SysUserVo user = baseMapper.user(id);
+        System.out.println("user:" + user);
+        return user;
+    }
 }
