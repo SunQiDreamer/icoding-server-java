@@ -4,7 +4,6 @@ import com.sq.ic.common.cache.Caches;
 import com.sq.ic.pojo.dto.SysUserDto;
 import com.sq.ic.pojo.po.SysResource;
 import com.sq.ic.pojo.po.SysRole;
-import com.sq.ic.service.SysRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -39,15 +38,17 @@ public class TokenRealm extends AuthorizingRealm {
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         List<SysRole> roles = user.getRoles();
-        if (CollectionUtils.isEmpty(roles)) return info;
+        if (CollectionUtils.isEmpty(roles))
+            return info;
 
-        //添加角色
+        // 添加角色
         for (SysRole role : roles) {
             info.addRole(role.getName());
         }
 
         List<SysResource> resources = user.getResources();
-        if (CollectionUtils.isEmpty(resources)) return info;
+        if (CollectionUtils.isEmpty(resources))
+            return info;
 
         // 添加权限
         for (SysResource resource : resources) {

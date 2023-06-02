@@ -101,7 +101,6 @@ public class SysUserServiceImpl
     @Override
     public boolean saveOrUpdate(SysUserReqVo reqVo) {
         SysUser user = MapStructs.INSTANCE.reqVo2po(reqVo);
-
         if (!saveOrUpdate(user))
             return false;
 

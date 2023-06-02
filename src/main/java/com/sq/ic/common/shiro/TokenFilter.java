@@ -23,7 +23,8 @@ public class TokenFilter extends AccessControlFilter {
      * 如果返回false：不允许访问。会进入onAccessDenied方法，不会进入下一个链条调用（比如Filter、拦截器、控制器等）
      */
     @Override
-    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
+    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o)
+            throws Exception {
         return false;
     }
 
@@ -39,12 +40,14 @@ public class TokenFilter extends AccessControlFilter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String token = request.getHeader(HEADER_TOKEN);
 
-//        if (token == null) { // 如果没有Token
-//            return JsonVos.raise(CodeMsg.NO_TOKEN);
-//        }
-//        if (Caches.getToken(token) == null) { // 如果Token过期了
-//            return JsonVos.raise(CodeMsg.TOKEN_EXPIRED);
-//        }
+        if (token == null) { // 如果没有Token
+            return JsonVos.raise(CodeMsg.NO_TOKEN);
+        }
+        System.out.println("xxxtoken:" + token);
+        if (Caches.getToken(token) == null) { // 如果Token过期了
+            System.out.println("yyytoken:" + Caches.getToken(token));
+            return JsonVos.raise(CodeMsg.TOKEN_EXPIRED);
+        }
         // 鉴权（进入Realm）
         // 这里调用login，并不是“登录”的意思，是为了触发Realm的相应方法去加载用户的角色、权限信息，以便鉴权
         SecurityUtils.getSubject().login(new Token("token"));

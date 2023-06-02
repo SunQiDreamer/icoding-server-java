@@ -12,8 +12,12 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestControllerAdvice
@@ -22,7 +26,7 @@ public class CommonExceptionHandler {
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public JsonVo handle(Throwable t) {
-        log.error("handle", t);
+        log.error("handle-xxxxxxxxxxxxx", t);
 
         // 一些可以直接处理的异常
         if (t instanceof CommonException) {
@@ -63,17 +67,17 @@ public class CommonExceptionHandler {
         return JsonVos.error(msg);
     }
 
-//    @ExceptionHandler(Throwable.class)
-//    public void handle(Throwable t,
-//                       HttpServletRequest request,
-//                       HttpServletResponse response) throws Exception {
-//        // 设置返回数据的格式
-//        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-//        response.setCharacterEncoding(StandardCharsets.UTF_8.displayName());
-////        response.setContentType("application/json; charset=UTF-8");
-//        response.setStatus(400);
-//        response.getWriter().write(Rs.error(t).jsonString());
-////        Debugs.run(t::printStackTrace);
-//        log.error(null, t);
-//    }
+    // @ExceptionHandler(Throwable.class)
+    // public void handle(Throwable t,
+    // HttpServletRequest request,
+    // HttpServletResponse response) throws Exception {
+    // // 设置返回数据的格式
+    // response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+    // response.setCharacterEncoding(StandardCharsets.UTF_8.displayName());
+    // // response.setContentType("application/json; charset=UTF-8");
+    // response.setStatus(400);
+    // response.getWriter().write(Rs.error(t).jsonString());
+    // // Debugs.run(t::printStackTrace);
+    // log.error(null, t);
+    // }
 }

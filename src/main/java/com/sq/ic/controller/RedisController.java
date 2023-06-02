@@ -22,6 +22,7 @@ public class RedisController {
     public String addString(String key, String value) {
         ValueOperations<String, String> valueOperations = stringRedisTemplate.opsForValue();
         valueOperations.set(key, value);
+
         return "ok";
     }
 
@@ -40,6 +41,14 @@ public class RedisController {
         hashMap.put("no", no);
         hashMap.put("age", age);
         hashOperations.putAll(hashKey, hashMap);
+
+        hashOperations.put("hashKey", "no", 15);
+        hashOperations.put("hashKey", "age", 22);
+        hashOperations.put("hashKey", "name", "rose");
+
+        hashOperations.get("name", "hashKey");
+        hashOperations.delete("no", "hashKey");
+
         return "ok";
     }
 
@@ -78,7 +87,8 @@ public class RedisController {
     public String list(String key) {
         ListOperations<String, String> listOperations = stringRedisTemplate.opsForList();
         List<String> list = listOperations.range(key, 0, -1);
-        if (list != null) return list.toString();
+        if (list != null)
+            return list.toString();
         return "[]";
     }
 

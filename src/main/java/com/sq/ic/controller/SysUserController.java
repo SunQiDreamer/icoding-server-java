@@ -6,7 +6,6 @@ import com.sq.ic.common.mapStruct.MapStructs;
 import com.sq.ic.common.shiro.TokenFilter;
 import com.sq.ic.common.util.Constants;
 import com.sq.ic.common.util.JsonVos;
-import com.sq.ic.common.util.Streams;
 import com.sq.ic.pojo.po.SysUser;
 import com.sq.ic.pojo.result.CodeMsg;
 import com.sq.ic.pojo.vo.DataJsonVo;
@@ -102,7 +101,6 @@ public class SysUserController extends BaseController<SysUser, SysUserReqVo> {
     // @RequiresPermissions(Constants.Permisson.SYS_USER_LIST)
     public DataJsonVo<SysUserVo> user(@PathVariable Integer id) {
         SysUserVo userVo = service.user(id);
-        System.out.println("userVo:" + userVo);
         return new DataJsonVo<>(userVo);
     }
 
